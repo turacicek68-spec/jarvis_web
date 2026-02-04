@@ -1,0 +1,130 @@
+:root {
+    --primary-color: #00e5ff;
+    --bg-dark: #0b0f1a;
+    --text-white: #ffffff;
+    --card-bg: #161b2a;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10%;
+    background: rgba(11, 15, 26, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo span { color: var(--primary-color); }
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+nav a:hover { color: var(--primary-color); }
+
+/* Görselleştirici Animasyonu */
+.visualizer-container {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+.pulse { animation: pulse 2s infinite; }
+.pulse2 { animation: pulse 2s infinite 0.6s; }
+.pulse3 { animation: pulse 2s infinite 1.2s; }
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+h1 { font-size: 3.5rem; margin-bottom: 10px; }
+
+.btn {
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px;
+    display: inline-block;
+    transition: 0.4s;
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: black;
+}
+
+.secondary-btn {
+    border: 2px solid var(--primary-color);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3);
+}
+
+.ads-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #101522;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 50px 10%;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #252d41;
+}
+
+footer {
+    padding: 50px;
+    background: #05070a;
+    color: #888;
+    text-align: center;
+}
