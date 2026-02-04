@@ -3,82 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asistanın Olsun</title>
+    <title>Jarvis AI | 2026 Global Edition</title>
     
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6720040706627493"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6720040706627493" crossorigin="anonymous"></script>
 
     <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: #020617;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
         }
-        .status-box {
-            border: 2px solid white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 300px;
+
+        /* --- AÇILIŞ ANİMASYONU --- */
+        #intro-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #020617; display: flex; justify-content: center;
+            align-items: center; z-index: 999;
         }
+
+        .circle-pulse {
+            width: 20px; height: 20px; background: #38bdf8;
+            border-radius: 50%; box-shadow: 0 0 30px #38bdf8;
+            animation: pulse-and-pop 2.5s forwards ease-in-out;
+        }
+
+        @keyframes pulse-and-pop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(5); opacity: 1; box-shadow: 0 0 100px #38bdf8; }
+            80% { transform: scale(15); opacity: 0.5; }
+            100% { transform: scale(40); opacity: 0; visibility: hidden; }
+        }
+
+        .intro-text {
+            position: absolute; color: #38bdf8; font-weight: bold;
+            letter-spacing: 5px; opacity: 0;
+            animation: text-fade 2s 0.5s forwards;
+        }
+
+        @keyframes text-fade {
+            0% { opacity: 0; transform: translateY(20px); }
+            50% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; }
+        }
+
+        /* --- ANA PANEL (AÇILIŞTAN SONRA) --- */
+        #main-content {
+            opacity: 0; transform: scale(0.9);
+            animation: content-appear 1s 2.5s forwards;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        @keyframes content-appear {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .neo-card {
+            border: 2px solid #38bdf8;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 40px; border-radius: 30px;
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+            width: 350px; text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .glitch-title {
+            color: white; font-size: 2.5rem; margin: 0;
+            text-shadow: 2px 2px #38bdf8; letter-spacing: 4px;
+        }
+
+        .status-line {
+            color: #4ade80; font-size: 0.8rem; font-weight: bold;
+            margin-bottom: 30px; border: 1px solid #4ade80;
+            display: inline-block; padding: 3px 10px; border-radius: 5px;
+        }
+
         .btn {
-            display: block;
-            margin: 15px auto;
-            padding: 12px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: 0.3s;
+            display: block; width: 100%; padding: 15px 0;
+            margin: 15px 0; border-radius: 12px;
+            text-decoration: none; font-weight: bold;
+            transition: 0.4s; position: relative; overflow: hidden;
+            border: 1px solid #38bdf8; font-size: 1.1rem;
         }
-        .download-btn {
-            background-color: white;
-            color: black;
+
+        .btn-download { background: #38bdf8; color: #020617; box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
+        .btn-yt { background: transparent; color: #38bdf8; }
+
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 0 30px #38bdf8; }
+
+        .features {
+            font-size: 0.75rem; color: #94a3b8; margin-top: 20px;
+            text-align: left; line-height: 1.6;
         }
-        .youtube-btn {
-            background-color: #ff0000;
-            color: white;
-        }
-        .btn:hover {
-            opacity: 0.8;
-            transform: scale(1.03);
-        }
-        .warning {
-            color: #ff4444;
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: -5px;
-            margin-bottom: 15px;
-        }
-        hr {
-            border: 0.5px solid #333;
-            margin: 20px 0;
+
+        footer {
+            margin-top: 30px; font-size: 0.7rem; color: #475569;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <div class="status-box">
-        <h1 style="letter-spacing: 2px; font-size: 24px;">ASİSTANIN OLSUN</h1>
-        <p style="font-size: 14px;">Sunucu Durumu: <span style="color: #00ff00;">AKTİF</span></p>
-        
-        <hr>
-
-        <a href="https://www.youtube.com/@combat_patlat" target="_blank" class="btn youtube-btn">COMBAT_PATLAT KATIL</a>
-
-        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn download-btn">JARVIS SETUP İNDİR</a>
-        <p class="warning">⚠️ SADECE PC İÇİNDİR</p>
+    <div id="intro-layer">
+        <div class="intro-text">SYSTEM INITIALIZING...</div>
+        <div class="circle-pulse"></div>
     </div>
 
-    <div style="margin-top: 30px;">
-        <p style="font-size: 10px; color: #444;">REKLAM</p>
+    <div id="main-content">
+        <div class="neo-card">
+            <h1 class="glitch-title">JARVIS AI</h1>
+            <div class="status-line">ONLINE // VERSION 2.6</div>
+
+            <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn btn-download">🚀 KURULUMU BAŞLAT (.EXE)</a>
+            <a href="https://www.youtube.com/@combat_patlat" target="_blank" class="btn btn-yt">🎬 YOUTUBE KANALIMIZ</a>
+
+            <div class="features">
+                ● Gelişmiş Ses Tanıma<br>
+                ● 2026 Güncel Veritabanı<br>
+                ● Ultra Düşük Gecikme<br>
+                ● Sadece Windows İşletim Sistemi
+            </div>
+        </div>
+
+        <footer>
+            PATENT © 2026 TUĞRA TECH - TÜM HAKLARI SAKLIDIR
+        </footer>
     </div>
+
+    <script>
+        // Animasyon bitince ekranı temizlemek için küçük bir dokunuş
+        setTimeout(() => {
+            document.getElementById('intro-layer').style.display = 'none';
+        }, 2500);
+    </script>
 
 </body>
 </html>
