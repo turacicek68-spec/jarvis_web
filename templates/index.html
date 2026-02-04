@@ -3,140 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jarvis AI | 2026 Global Edition</title>
+    <title>Kişiselleştirilebilir Asistan | Tuğra Tech</title>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6720040706627493" crossorigin="anonymous"></script>
 
     <style>
         body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
+            margin: 0; padding: 0;
             background-color: #020617;
-            font-family: 'Segoe UI', sans-serif;
-            overflow: hidden;
-            display: flex; justify-content: center; align-items: center;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
         }
 
-        /* --- AÇILIŞ ANİMASYONU --- */
-        #intro-layer {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #020617; display: flex; justify-content: center;
-            align-items: center; z-index: 999;
+        /* --- ÜST MENÜ --- */
+        header {
+            width: 100%;
+            padding: 25px 0;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+        header a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+        }
+        header a:hover { color: #ffffff; text-shadow: 0 0 15px #38bdf8; }
+
+        /* --- REKLAM ALANI --- */
+        .ad-container {
+            width: 100%;
+            max-width: 970px;
+            min-height: 90px;
+            margin: 40px auto;
+            border: 1px dashed rgba(56, 189, 248, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 12px;
         }
 
-        .circle-pulse {
-            width: 20px; height: 20px; background: #38bdf8;
-            border-radius: 50%; box-shadow: 0 0 30px #38bdf8;
-            animation: pulse-and-pop 2.5s forwards ease-in-out;
+        /* --- ANA İÇERİK --- */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
         }
 
-        @keyframes pulse-and-pop {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(5); opacity: 1; box-shadow: 0 0 100px #38bdf8; }
-            80% { transform: scale(15); opacity: 0.5; }
-            100% { transform: scale(40); opacity: 0; visibility: hidden; }
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
-        .intro-text {
-            position: absolute; color: #38bdf8; font-weight: bold;
-            letter-spacing: 5px; opacity: 0;
-            animation: text-fade 2s 0.5s forwards;
+        .description {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            margin: 20px 0 50px 0;
+            max-width: 600px;
         }
 
-        @keyframes text-fade {
-            0% { opacity: 0; transform: translateY(20px); }
-            50% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; }
+        /* --- BUTONLAR --- */
+        .actions {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-
-        /* --- ANA PANEL (AÇILIŞTAN SONRA) --- */
-        #main-content {
-            opacity: 0; transform: scale(0.9);
-            animation: content-appear 1s 2.5s forwards;
-            display: flex; flex-direction: column; align-items: center;
+        .btn-main {
+            background-color: #38bdf8;
+            color: #020617;
+            padding: 20px 45px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
         }
-
-        @keyframes content-appear {
-            to { opacity: 1; transform: scale(1); }
+        .btn-sub {
+            border: 2px solid rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+            padding: 18px 45px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
         }
+        .btn-main:hover { transform: translateY(-7px); box-shadow: 0 15px 35px rgba(56, 189, 248, 0.4); }
+        .btn-sub:hover { background: rgba(56, 189, 248, 0.05); border-color: #38bdf8; }
 
-        .neo-card {
-            border: 2px solid #38bdf8;
-            background: rgba(15, 23, 42, 0.8);
-            padding: 40px; border-radius: 30px;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
-            width: 350px; text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .glitch-title {
-            color: white; font-size: 2.5rem; margin: 0;
-            text-shadow: 2px 2px #38bdf8; letter-spacing: 4px;
-        }
-
-        .status-line {
-            color: #4ade80; font-size: 0.8rem; font-weight: bold;
-            margin-bottom: 30px; border: 1px solid #4ade80;
-            display: inline-block; padding: 3px 10px; border-radius: 5px;
-        }
-
-        .btn {
-            display: block; width: 100%; padding: 15px 0;
-            margin: 15px 0; border-radius: 12px;
-            text-decoration: none; font-weight: bold;
-            transition: 0.4s; position: relative; overflow: hidden;
-            border: 1px solid #38bdf8; font-size: 1.1rem;
-        }
-
-        .btn-download { background: #38bdf8; color: #020617; box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
-        .btn-yt { background: transparent; color: #38bdf8; }
-
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 0 30px #38bdf8; }
-
-        .features {
-            font-size: 0.75rem; color: #94a3b8; margin-top: 20px;
-            text-align: left; line-height: 1.6;
-        }
-
-        footer {
-            margin-top: 30px; font-size: 0.7rem; color: #475569;
+        .system-req {
+            margin-top: 30px;
+            color: #f87171;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* --- ALT BİLGİ VE TELİF --- */
+        footer {
+            padding: 60px 0 30px 0;
+            margin-top: auto;
+            text-align: center;
+            width: 100%;
+        }
+        .copyright {
+            font-size: 11px;
+            color: #475569;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <div id="intro-layer">
-        <div class="intro-text">SYSTEM INITIALIZING...</div>
-        <div class="circle-pulse"></div>
+    <header>
+        <a href="#">ANA SAYFA</a>
+        <a href="https://www.youtube.com/@combat_patlat" target="_blank">YOUTUBE</a>
+        <a href="#">İLETİŞİM</a>
+    </header>
+
+    <div class="ad-container">
+        REKLAM ALANI
     </div>
 
-    <div id="main-content">
-        <div class="neo-card">
-            <h1 class="glitch-title">JARVIS AI</h1>
-            <div class="status-line">ONLINE // VERSION 2.6</div>
+    <main>
+        <h1>Kişiselleştirilebilir Asistan</h1>
+        <p class="description">Senin için özel olarak tasarlanmış, sesinle hayat bulan yeni nesil yardımcı.</p>
 
-            <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn btn-download">🚀 KURULUMU BAŞLAT (.EXE)</a>
-            <a href="https://www.youtube.com/@combat_patlat" target="_blank" class="btn btn-yt">🎬 YOUTUBE KANALIMIZ</a>
-
-            <div class="features">
-                ● Gelişmiş Ses Tanıma<br>
-                ● 2026 Güncel Veritabanı<br>
-                ● Ultra Düşük Gecikme<br>
-                ● Sadece Windows İşletim Sistemi
-            </div>
+        <div class="actions">
+            <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main">ŞİMDİ İNDİR (.EXE)</a>
+            <a href="https://www.youtube.com/@combat_patlat" target="_blank" class="btn-sub">YOUTUBE KANALIM</a>
         </div>
 
-        <footer>
-            PATENT © 2026 TUĞRA TECH - TÜM HAKLARI SAKLIDIR
-        </footer>
+        <p class="system-req">⚠️ Yalnızca Windows 10 ve 11 işletim sistemleri içindir</p>
+    </main>
+
+    <div class="ad-container">
+        REKLAM ALANI
     </div>
 
-    <script>
-        // Animasyon bitince ekranı temizlemek için küçük bir dokunuş
-        setTimeout(() => {
-            document.getElementById('intro-layer').style.display = 'none';
-        }, 2500);
-    </script>
+    <footer>
+        <p class="copyright">PATENT © 2026 TUĞRA TECH - TÜM HAKLARI SAKLIDIR</p>
+    </footer>
 
 </body>
 </html>
