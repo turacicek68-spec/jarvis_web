@@ -3,57 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jarvis Web Sunucusu</title>
+    <title>Jarvis AI - Combat_Patlat</title>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6720040706627493"
      crossorigin="anonymous"></script>
+
     <style>
         body {
             background-color: #0f172a;
             color: #38bdf8;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             text-align: center;
         }
         .container {
             border: 2px solid #38bdf8;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            background: rgba(30, 41, 59, 0.9);
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            color: #fff;
         }
         .status {
-            font-size: 1.5rem;
-            margin-top: 10px;
+            font-size: 1rem;
+            margin-bottom: 20px;
             color: #4ade80;
+            font-weight: bold;
         }
-        .ad-space {
+        .download-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 18px 35px;
+            background-color: #38bdf8;
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 900;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            width: 80%;
+        }
+        .download-btn:hover {
+            background-color: #4ade80;
+            transform: translateY(-3px);
+        }
+        /* YOUTUBE BUTONU */
+        .youtube-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #ff0000;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            width: 80%;
+        }
+        .youtube-btn:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+        .warning-box {
+            margin-top: 25px;
+            padding: 15px;
+            border-top: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .pc-only {
+            color: #f87171;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .ad-container {
             margin-top: 30px;
-            width: 300px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px dashed #38bdf8;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>JARVIS SİSTEMİ</h1>
-        <p>Bulut Sunucu Bağlantısı Durumu:</p>
-        <div class="status">● ÇEVRİMİÇİ</div>
+        <h1>JARVIS AI</h1>
+        <div class="status">● SISTEM AKTIF</div>
+        
+        <p>Gelişmiş asistanınızı hemen indirin:</p>
+
+        <a href="https://drive.google.com/uc?export=download&id=1NNSh9fEkgktmeEiREc9k7InnZYYXWb9M" class="download-btn">🚀 JARVIS'I İNDİR</a>
+        
+        <p style="margin-top: 20px; font-weight: bold; color: #fff;">Bize Katılın!</p>
+        
+        <a href="https://www.youtube.com/@combat_patlat" target="_blank" class="youtube-btn">🎬 COMBAT_PATLAT YOUTUBE</a>
+
+        <div class="warning-box">
+            <p class="pc-only">⚠️ SADECE PC (WINDOWS) İÇİNDİR</p>
+        </div>
     </div>
 
-    <div class="ad-space">
-        Reklamlar Burada Görünecek
-    </div>
+    <div class="ad-container">
+        <p style="font-size: 10px; color: #64748b;">REKLAM</p>
+        </div>
 
 </body>
 </html>
