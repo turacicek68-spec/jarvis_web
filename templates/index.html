@@ -3,129 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tuğra Tech yapay zeka asistanı ile bilgisayarınızı sesinizle yönetin. %100 Python, güvenli ve hızlı.">
     <title>Kişiselleştirilebilir Asistan | Tuğra Tech</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6720040706627493" crossorigin="anonymous"></script>
     
     <style>
         :root { 
-            --bg: #030712; 
-            --primary: #38bdf8; 
-            --secondary: #818cf8; 
+            --bg: #020617; 
+            --primary: #00d4ff; /* jarvis.py'deki neon mavi rengiyle birebir aynı */
+            --secondary: #6366f1; 
             --text-main: #f8fafc; 
             --text-dim: #94a3b8; 
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
         body { 
             margin: 0; background-color: var(--bg); color: var(--text-main); 
             font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .bg-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 0%, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
             z-index: -1; pointer-events: none;
         }
 
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 10%; background: rgba(3, 7, 18, 0.7); 
-            backdrop-filter: blur(15px); position: fixed; width: 80%; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 15px 5%; background: rgba(2, 6, 23, 0.8); 
+            backdrop-filter: blur(20px); position: fixed; width: 90%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary); text-shadow: 0 0 15px rgba(56, 189, 248, 0.5); }
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--text-main); letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
 
         .hero { 
-            padding: 180px 10% 60px; text-align: center;
-            animation: fadeInUp 1s ease-out;
+            padding: 160px 5% 60px; text-align: center; display: flex; flex-direction: column; align-items: center;
         }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* CANLI AI ÇEKİRDEĞİ (jarvis.py görseli ile uyumlu) */
+        .ai-core {
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 5px solid var(--primary);
+            box-shadow: 0 0 50px var(--primary), inset 0 0 20px var(--primary);
+            margin-bottom: 40px; position: relative;
+            animation: pulseCore 3s infinite ease-in-out;
+        }
 
-        h1 { font-size: 4.5rem; margin: 0; letter-spacing: -3px; line-height: 1; font-weight: 800; }
-        .gradient-text { background: linear-gradient(to right, #fff, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @keyframes pulseCore {
+            0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 30px var(--primary); }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 70px var(--primary); }
+            100% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 30px var(--primary); }
+        }
+
+        h1 { font-size: 4rem; margin: 0; letter-spacing: -2px; line-height: 1.1; font-weight: 800; }
+        .gradient-text { background: linear-gradient(135deg, #fff 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .btn-main {
-            position: relative; overflow: hidden; background: var(--primary); color: #000; padding: 18px 45px; 
-            border-radius: 12px; text-decoration: none; font-weight: 800; display: inline-block; transition: 0.4s;
+            margin-top: 30px; background: var(--text-main); color: #000; 
+            padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; 
+            display: inline-block; transition: 0.3s;
         }
-        .btn-main:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(56, 189, 248, 0.4); }
+        .btn-main:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); }
 
-        /* REKLAM ALANI STİLİ */
-        .ad-container { width: 90%; max-width: 970px; margin: 30px auto; min-height: 90px; border: 1px dashed rgba(56,189,248,0.1); display: flex; justify-content: center; }
+        /* REKLAM ALANLARI */
+        .ad-container { width: 90%; max-width: 970px; margin: 40px auto; min-height: 100px; border: 1px dashed rgba(255,255,255,0.05); }
 
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 40px 10%; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 20px; text-align: center; backdrop-filter: blur(10px); }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; padding: 20px 10%; }
+        .glass-card { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; text-align: center; }
 
-        .code-container { margin: 40px auto; width: 80%; background: #010409; border-radius: 20px; padding: 25px; border: 1px solid #30363d; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .code-header { display: flex; gap: 8px; margin-bottom: 15px; }
+        .code-window {
+            margin: 60px auto; width: 85%; max-width: 800px;
+            background: #0d1117; border-radius: 15px; border: 1px solid #30363d; overflow: hidden;
+        }
+        .window-header { background: #161b22; padding: 10px 15px; display: flex; gap: 8px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .code-content { padding: 20px; color: #e6edf3; font-family: 'Courier New', monospace; font-size: 0.9rem; overflow-x: auto; }
 
-        footer { padding: 60px 10%; text-align: center; font-size: 0.8rem; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); }
+        footer { padding: 50px 10%; text-align: center; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
+
     <div class="bg-glow"></div>
 
     <nav>
-        <div class="logo">TUĞRA TECH</div>
-        <div class="nav-links">
-            <a href="https://www.youtube.com/@combat_patlat" target="_blank" style="color: var(--text-dim); text-decoration: none; margin-right: 20px;">YOUTUBE</a>
-        </div>
-        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main" style="padding: 10px 20px; font-size: 0.8rem;">İNDİR</a>
+        <div class="logo">TUĞRA<span>TECH</span></div>
+        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main" style="margin:0; padding: 10px 25px; font-size: 0.8rem;">İNDİR</a>
     </nav>
 
     <section class="hero">
+        <div class="ai-core"></div>
         <h1>GELECEĞİN <br> <span class="gradient-text">YAPAY ZEKASI</span></h1>
-        <p style="color: var(--text-dim); font-size: 1.2rem; margin: 25px auto 40px; max-width: 650px;">
-            Vosk motoruyla güçlendirilmiş, tamamen yerel ve güvenli asistan deneyimi.
+        <p style="color: var(--text-dim); font-size: 1.2rem; margin-top: 20px; max-width: 600px;">
+            Python tabanlı, çevrimdışı çalışan ve tamamen senin kontrolünde olan yeni nesil sesli asistan.
         </p>
-        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main">HEMEN ÜCRETSİZ İNDİR</a>
+        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main">ÜCRETSİZ İNDİR (V1.0)</a>
     </section>
 
     <div class="ad-container">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-6720040706627493"
-             data-ad-slot="BURAYA_REKLAM_ID_YAZ"
+             data-ad-slot="4813834514"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <div class="tech-grid">
-        <div class="glass-card"><h2>150+</h2><p>Komut</p></div>
-        <div class="glass-card"><h2>Vosk</h2><p>AI Motoru</p></div>
-        <div class="glass-card"><h2>%100</h2><p>Python</p></div>
-        <div class="glass-card"><h2>0.2s</h2><p>Tepki</p></div>
+        <div class="glass-card"><h2 style="color:var(--primary)">150+</h2><p>Sesli Komut</p></div>
+        <div class="glass-card"><h2 style="color:var(--primary)">Vosk</h2><p>AI Motoru</p></div>
+        <div class="glass-card"><h2 style="color:var(--primary)">0.2s</h2><p>Tepki Hızı</p></div>
     </div>
 
-    <div class="code-container">
-        <div class="code-header">
-            <div class="dot" style="background: #ff5f56;"></div><div class="dot" style="background: #ffbd2e;"></div><div class="dot" style="background: #27c93f;"></div>
+    <div class="code-window">
+        <div class="window-header">
+            <div class="dot" style="background: #ff5f56;"></div>
+            <div class="dot" style="background: #ffbd2e;"></div>
+            <div class="dot" style="background: #27c93f;"></div>
+            <span style="margin-left: 10px; color: #8b949e; font-size: 0.8rem;">jarvis.py</span>
         </div>
-        <pre style="color: #c9d1d9; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 0; overflow-x: auto;">
-<span style="color: #ff7b72;">import</span> vosk
-<span style="color: #8b949e;"># Asistan Zekası Başlatılıyor...</span>
-model = vosk.Model(<span style="color: #a5d6ff;">"model"</span>)
-rec = vosk.KaldiRecognizer(model, <span style="color: #a5d6ff;">16000</span>)
-<span style="color: #ff7b72;">print</span>(<span style="color: #a5d6ff;">"Tuğra Tech AI Aktif!"</span>)
-        </pre>
+        <div class="code-content">
+            <span style="color: #ff7b72;">import</span> pyttsx3<br>
+            <span style="color: #ff7b72;">from</span> vosk <span style="color: #ff7b72;">import</span> Model<br><br>
+            <span style="color: #8b949e;"># Tuğra Tech AI Çekirdeği Başlatılıyor...</span><br>
+            engine = pyttsx3.<span style="color: #d2a8ff;">init</span>()<br>
+            model = <span style="color: #d2a8ff;">Model</span>(<span style="color: #a5d6ff;">"model"</span>)<br>
+            <span style="color: #ff7b72;">print</span>(<span style="color: #a5d6ff;">"Sistemler aktif patron!"</span>)
+        </div>
     </div>
 
     <div class="ad-container">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-6720040706627493"
-             data-ad-slot="BURAYA_REKLAM_ID_YAZ"
+             data-ad-slot="4813834514"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <footer>
-        PATENT © 2026 TUĞRA TECH - TÜM HAKLARI SAKLIDIR <br>
-        <span style="opacity: 0.5;">Yapay zeka ile yerel kontrol senin elinde.</span>
+        <p>PATENT © 2026 TUĞRA TECH - TÜM HAKLARI SAKLIDIR</p>
+        <p style="opacity: 0.5;">AI-Driven Local Intelligence.</p>
     </footer>
+
 </body>
 </html>
