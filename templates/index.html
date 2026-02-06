@@ -4,169 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kişiselleştirilebilir Asistan | Tuğra Tech</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6720040706627493" crossorigin="anonymous"></script>
-
+    
     <style>
-        body, html {
-            margin: 0; padding: 0;
-            background-color: #020617;
-            color: #f8fafc;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
+        :root { 
+            --bg: #030712; 
+            --primary: #38bdf8; 
+            --secondary: #818cf8; 
+            --accent: #22d3ee;
+            --text-main: #f8fafc; 
+            --text-dim: #94a3b8; 
         }
 
-        /* --- ÜST MENÜ --- */
-        header {
-            width: 100%;
-            padding: 25px 0;
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
-        }
-        header a {
-            color: #38bdf8;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            letter-spacing: 1.5px;
-            transition: 0.3s;
-        }
-        header a:hover { color: #ffffff; text-shadow: 0 0 15px #38bdf8; }
-
-        /* --- REKLAM ALANI --- */
-        .ad-container {
-            width: 100%;
-            max-width: 970px;
-            min-height: 90px;
-            margin: 40px auto;
-            border: 1px dashed rgba(56, 189, 248, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #475569;
-            font-size: 12px;
+        body { 
+            margin: 0; background-color: var(--bg); color: var(--text-main); 
+            font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden;
         }
 
-        /* --- ANA İÇERİK --- */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 20px;
+        /* --- ARKA PLAN EFEKTİ --- */
+        .bg-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
+            z-index: -1; pointer-events: none;
         }
 
-        h1 {
-            font-size: 4rem;
-            margin: 0;
-            font-weight: 900;
-            background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+        /* --- NAVBAR --- */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 10%; background: rgba(3, 7, 18, 0.7); 
+            backdrop-filter: blur(15px); position: fixed; width: 80%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary); text-shadow: 0 0 15px rgba(56, 189, 248, 0.5); }
+
+        /* --- HERO --- */
+        .hero { 
+            padding: 200px 10% 100px; text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .description {
-            font-size: 1.3rem;
-            color: #94a3b8;
-            margin: 20px 0 50px 0;
-            max-width: 600px;
+        h1 { font-size: 5rem; margin: 0; letter-spacing: -3px; line-height: 0.9; font-weight: 800; }
+        .gradient-text {
+            background: linear-gradient(to right, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        /* --- BUTONLAR --- */
-        .actions {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        /* --- MODERN BUTONLAR --- */
         .btn-main {
-            background-color: #38bdf8;
-            color: #020617;
-            padding: 20px 45px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+            position: relative; overflow: hidden;
+            background: var(--primary); color: #000; padding: 20px 50px; 
+            border-radius: 15px; text-decoration: none; font-weight: 800; 
+            display: inline-block; transition: 0.4s;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
         }
-        .btn-sub {
-            border: 2px solid rgba(56, 189, 248, 0.4);
-            color: #38bdf8;
-            padding: 18px 45px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: 0.3s;
+        .btn-main::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: rgba(255, 255, 255, 0.2); transform: rotate(45deg);
+            animation: shine 3s infinite;
         }
-        .btn-main:hover { transform: translateY(-7px); box-shadow: 0 15px 35px rgba(56, 189, 248, 0.4); }
-        .btn-sub:hover { background: rgba(56, 189, 248, 0.05); border-color: #38bdf8; }
+        @keyframes shine {
+            0% { left: -150%; } 100% { left: 150%; }
+        }
+        .btn-main:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 40px rgba(56, 189, 248, 0.5); }
 
-        .system-req {
-            margin-top: 30px;
-            color: #f87171;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* --- TECH CARDS (GLASSMORPHISM) --- */
+        .tech-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; padding: 50px 10%; 
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px; border-radius: 20px; text-align: center;
+            backdrop-filter: blur(10px); transition: 0.3s;
+        }
+        .glass-card:hover { 
+            background: rgba(56, 189, 248, 0.05); 
+            border-color: var(--primary); 
+            transform: translateY(-10px);
         }
 
-        /* --- ALT BİLGİ VE TELİF --- */
-        footer {
-            padding: 60px 0 30px 0;
-            margin-top: auto;
-            text-align: center;
-            width: 100%;
+        /* --- KOD BLOĞU --- */
+        .code-container {
+            margin: 50px auto; width: 80%; background: #010409;
+            border-radius: 20px; padding: 20px; border: 1px solid #30363d;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
-        .copyright {
-            font-size: 11px;
-            color: #475569;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
+        .code-header { display: flex; gap: 8px; margin-bottom: 15px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+
+        .ad-container { width: 80%; max-width: 970px; height: 90px; margin: 40px auto; border: 1px dashed rgba(56, 189, 248, 0.1); display: flex; align-items: center; justify-content: center; color: #334155; }
+        
+        footer { padding: 100px 10% 50px; text-align: center; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#">ANA SAYFA</a>
-        <a href="https://www.youtube.com/@combat_patlat" target="_blank">YOUTUBE</a>
-        <a href="#">İLETİŞİM</a>
-    </header>
+    <div class="bg-glow"></div>
 
-    <div class="ad-container">
-        REKLAM ALANI
-    </div>
-
-    <main>
-        <h1>Kişiselleştirilebilir Asistan</h1>
-        <p class="description">Senin için özel olarak tasarlanmış, sesinle hayat bulan yeni nesil yardımcı.</p>
-
-        <div class="actions">
-            <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main">ŞİMDİ İNDİR (.EXE)</a>
-            <a href="https://www.youtube.com/@combat_patlat" target="_blank" class="btn-sub">YOUTUBE KANALIM</a>
+    <nav>
+        <div class="logo">TUĞRA TECH</div>
+        <div class="nav-links">
+            <a href="https://www.youtube.com/@combat_patlat" target="_blank" style="color: var(--text-dim); text-decoration: none;">YOUTUBE KANALIM</a>
         </div>
+        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main" style="padding: 12px 25px; font-size: 0.9rem;">İNDİR</a>
+    </nav>
 
-        <p class="system-req">⚠️ Yalnızca Windows 10 ve 11 işletim sistemleri içindir</p>
-    </main>
+    <section class="hero">
+        <h1>GELECEĞİN <br> <span class="gradient-text">ASİSTANI</span></h1>
+        <p style="color: var(--text-dim); font-size: 1.3rem; margin: 30px auto 50px; max-width: 700px;">
+            Yüksek performanslı Python motoru ve özelleştirilebilir yapay zeka çekirdeği ile dijital dünyanı sesinle yönet.
+        </p>
+        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main">SİSTEMİ ŞİMDİ KUR</a>
+    </section>
 
-    <div class="ad-container">
-        REKLAM ALANI
+    <div class="ad-container">REKLAM ALANI</div>
+
+    <div class="tech-grid">
+        <div class="glass-card"><h2>150+</h2><p>Komut Seti</p></div>
+        <div class="glass-card"><h2>0.2s</h2><p>Yanıt Süresi</p></div>
+        <div class="glass-card"><h2>%100</h2><p>Güvenli & Yerel</p></div>
+        <div class="glass-card"><h2>V1.0</h2><p>Kararlı Sürüm</p></div>
     </div>
+
+    <div class="code-container">
+        <div class="code-header">
+            <div class="dot" style="background: #ff5f56;"></div>
+            <div class="dot" style="background: #ffbd2e;"></div>
+            <div class="dot" style="background: #27c93f;"></div>
+        </div>
+        <pre style="color: #c9d1d9; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+<span style="color: #ff7b72;">import</span> engine
+<span style="color: #ff7b72;">import</span> tugra_ai_core
+
+<span style="color: #8b949e;"># Asistan Zekası Başlatılıyor...</span>
+asistan = tugra_ai_core.<span style="color: #d2a8ff;">initialize</span>()
+asistan.<span style="color: #d2a8ff;">set_mode</span>(<span style="color: #a5d6ff;">"Ultra_Performans"</span>)
+
+<span style="color: #ff7b72;">if</span> asistan.<span style="color: #d2a8ff;">listen_voice</span>() == <span style="color: #a5d6ff;">"Merhaba"</span>:
+    asistan.<span style="color: #d2a8ff;">speak</span>(<span style="color: #a5d6ff;">"Hoş geldin patron, her şey hazır."</span>)
+        </pre>
+    </div>
+
+    <div class="ad-container">REKLAM ALANI</div>
 
     <footer>
-        <p class="copyright">PATENT © 2026 TUĞRA TECH - TÜM HAKLARI SAKLIDIR</p>
+        PATENT © 2026 TUĞRA TECH - TÜM HAKLARI SAKLIDIR <br>
+        DESIGNED FOR FUTURE SYSTEMS
     </footer>
 
 </body>
