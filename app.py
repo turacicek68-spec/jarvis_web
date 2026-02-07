@@ -1,27 +1,29 @@
 # app.py
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory # send_from_directory eklendi
 import os
 
 app = Flask(__name__)
 
 # --- BASİT VERİ TABANI ---
-# Render ücretsiz planda sunucu uyuduğunda bu liste sıfırlanır.
-# Ama şu aşamada test için en hızlı yol budur.
 ACTIVE_DEVICES = set() 
 
-# --- 1. WEB ARAYÜZÜ (Reklamların ve Panelin Olduğu Yer) ---
+# --- 1. WEB ARAYÜZÜ ---
 
 @app.route('/')
 def index():
-    # Bu ana sayfan: templates/index.html dosyanı açar
     return render_template('index.html')
+
+# --- ADS.TXT ÇÖZÜMÜ (Google Onayı İçin Kritik) ---
+@app.route('/ads.txt')
+def ads_txt():
+    # Bu fonksiyon, ana dizindeki ads.txt dosyasını Google'a gösterir
+    return send_from_directory(app.root_path, 'ads.txt')
 
 @app.route('/status')
 def status():
-    # Sistemin çalışıp çalışmadığını anlaman için kontrol sayfası
     return f"Jarvis Sunucusu Aktif. Kayitli Cihaz Sayisi: {len(ACTIVE_DEVICES)}"
 
-# --- 2. JARVIS API (Jarvis EXE'sinin bağlandığı kısım) ---
+# --- 2. JARVIS API ---
 
 @app.post("/api/activate")
 def activate():
@@ -46,8 +48,7 @@ def ping():
         return jsonify({"ok": True, "status": "online"})
     return jsonify({"ok": False, "error": "Cihaz kaydi yok"}), 403
 
-# --- RENDER İÇİN KRİTİK AYAR ---
+# --- RENDER/VERCEL AYARI ---
 if __name__ == "__main__":
-    # Render PORT bilgisini kendisi atar, eğer bulamazsa 5000 kullanır.
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
