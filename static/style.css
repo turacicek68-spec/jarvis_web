@@ -100,12 +100,15 @@ h1 { font-size: 3.5rem; margin-bottom: 10px; }
     box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3);
 }
 
+/* REKLAM ALANI DÜZENLEMESİ */
 .ads-container {
     max-width: 900px;
     margin: 40px auto;
     background: #101522;
     padding: 10px;
     border-radius: 8px;
+    min-height: 90px;
+    overflow: hidden;
 }
 
 .feature-grid {
