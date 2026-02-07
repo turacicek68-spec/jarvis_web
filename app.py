@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, render_template, request, jsonify, send_from_directory # send_from_directory eklendi
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
 
 app = Flask(__name__)
@@ -11,19 +11,21 @@ ACTIVE_DEVICES = set()
 
 @app.route('/')
 def index():
+    # Bu rota templates/index.html dosyanı kullanıcıya gösterir
     return render_template('index.html')
 
-# --- ADS.TXT ÇÖZÜMÜ (Google Onayı İçin Kritik) ---
+# --- 🛡️ ADS.TXT VE STATİK DOSYA ÇÖZÜMÜ (Google Onayı İçin Kritik) ---
 @app.route('/ads.txt')
 def ads_txt():
-    # Bu fonksiyon, ana dizindeki ads.txt dosyasını Google'a gösterir
+    """Google botları jarvis-web-three.vercel.app/ads.txt adresine geldiğinde 
+    ana dizindeki ads.txt dosyasını okuyabilmelerini sağlar."""
     return send_from_directory(app.root_path, 'ads.txt')
 
 @app.route('/status')
 def status():
     return f"Jarvis Sunucusu Aktif. Kayitli Cihaz Sayisi: {len(ACTIVE_DEVICES)}"
 
-# --- 2. JARVIS API ---
+# --- 2. JARVIS API (EXE Bağlantısı İçin) ---
 
 @app.post("/api/activate")
 def activate():
@@ -48,7 +50,8 @@ def ping():
         return jsonify({"ok": True, "status": "online"})
     return jsonify({"ok": False, "error": "Cihaz kaydi yok"}), 403
 
-# --- RENDER/VERCEL AYARI ---
+# --- RENDER/VERCEL ÇALIŞTIRMA AYARI ---
 if __name__ == "__main__":
+    # Vercel ve Render gibi platformlarda portu dinamik olarak alır
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
