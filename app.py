@@ -1,3 +1,4 @@
+# app.py
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
 
@@ -13,14 +14,15 @@ def index():
     # Bu rota templates/index.html dosyanı kullanıcıya gösterir
     return render_template('index.html')
 
-# --- 🛡️ ADS.TXT ÇÖZÜMÜ (Google Onayı İçin Kritik) ---
+# --- 🛡️ ADS.TXT VE STATİK DOSYA ÇÖZÜMÜ (Google Onayı İçin Kritik) ---
 @app.route('/ads.txt')
 def ads_txt():
     """
-    Google botları sitene gelip /ads.txt istediğinde,
-    static klasörünün içindeki ads.txt dosyasını sunar.
+    Google botları jarvis-web-three.vercel.app/ads.txt adresine geldiğinde 
+    ana dizindeki veya static klasöründeki ads.txt dosyasını okuyabilmelerini sağlar.
     """
-    return send_from_directory('static', 'ads.txt')
+    # Dosyanın nerede olduğuna bakmaksızın güvenli bir şekilde sunar
+    return send_from_directory(app.root_path, 'ads.txt')
 
 @app.route('/status')
 def status():
@@ -53,6 +55,5 @@ def ping():
 
 # --- RENDER/VERCEL ÇALIŞTIRMA AYARI ---
 if __name__ == "__main__":
-    # Vercel ve Render gibi platformlarda portu dinamik olarak alır
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
