@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
 
@@ -14,12 +13,14 @@ def index():
     # Bu rota templates/index.html dosyanı kullanıcıya gösterir
     return render_template('index.html')
 
-# --- 🛡️ ADS.TXT VE STATİK DOSYA ÇÖZÜMÜ (Google Onayı İçin Kritik) ---
+# --- 🛡️ ADS.TXT ÇÖZÜMÜ (Google Onayı İçin Kritik) ---
 @app.route('/ads.txt')
 def ads_txt():
-    """Google botları jarvis-web-three.vercel.app/ads.txt adresine geldiğinde 
-    ana dizindeki ads.txt dosyasını okuyabilmelerini sağlar."""
-    return send_from_directory(app.root_path, 'ads.txt')
+    """
+    Google botları sitene gelip /ads.txt istediğinde,
+    static klasörünün içindeki ads.txt dosyasını sunar.
+    """
+    return send_from_directory('static', 'ads.txt')
 
 @app.route('/status')
 def status():
