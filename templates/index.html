@@ -3,113 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta name="google-adsense-account" content="ca-pub-6720040706627493">
-
-    <title>Tuğra Tech | Yerel AI ve Yazılım Teknolojileri</title>
-    <meta name="description" content="Tuğra Tech tarafından geliştirilen yerel yapay zeka asistanı. Yüksek performanslı Python motoru ve tamamen güvenli sesli komut altyapısı.">
+    <title>Tuğra Tech | İleri Nesil Yerel AI Asistanı</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6720040706627493" crossorigin="anonymous"></script>
     
     <style>
-        :root { --bg: #030712; --primary: #38bdf8; --text-main: #f8fafc; --text-dim: #94a3b8; --card-bg: rgba(255,255,255,0.03); }
-        body { margin: 0; background-color: var(--bg); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        :root { --bg: #020617; --primary: #38bdf8; --text-main: #f8fafc; --text-dim: #94a3b8; --card: rgba(255,255,255,0.02); }
+        body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         
-        /* NAV BAR */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 10%; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(15px); position: fixed; width: 80%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary); letter-spacing: -1px; }
-        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        /* Navigasyon */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 10%; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px); position: fixed; width: 80%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary); text-transform: uppercase; }
+        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* HERO SECTION */
-        .hero { padding: 180px 10% 80px; text-align: center; }
-        h1 { font-size: 4.5rem; margin: 0; letter-spacing: -3px; font-weight: 800; line-height: 1.1; }
-        .gradient-text { background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: var(--text-dim); font-size: 1.2rem; margin: 25px 0; max-width: 600px; margin-inline: auto; }
-        .btn-main { background: var(--primary); color: #000; padding: 18px 45px; border-radius: 12px; text-decoration: none; font-weight: 800; display: inline-block; transition: 0.3s; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2); }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(56, 189, 248, 0.4); }
+        /* Hero */
+        .hero { padding: 180px 10% 100px; text-align: center; }
+        h1 { font-size: 5rem; letter-spacing: -3px; line-height: 1; margin: 0; font-weight: 800; }
+        .gradient { background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn { background: var(--primary); color: #000; padding: 18px 50px; border-radius: 14px; text-decoration: none; font-weight: 800; display: inline-block; transition: 0.3s; box-shadow: 0 10px 40px rgba(56, 189, 248, 0.2); }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(56, 189, 248, 0.4); }
 
-        /* SECTIONS */
-        section { padding: 80px 10%; }
-        h2 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 40px; }
+        /* Gridler */
+        section { padding: 100px 10%; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--card-bg); padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        .card:hover { border-color: var(--primary); background: rgba(255,255,255,0.05); }
+        .card { background: var(--card); padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); }
         .card h3 { color: var(--primary); margin-top: 0; font-size: 1.5rem; }
         .card p { color: var(--text-dim); line-height: 1.8; }
-
-        /* HAKKIMDA ÖZEL BÖLÜM */
-        .about-text { font-size: 1.15rem; color: var(--text-dim); max-width: 900px; line-height: 2; }
-        .highlight { color: #fff; font-weight: 600; }
-
-        /* FOOTER */
-        footer { padding: 60px 10%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-dim); }
         
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            nav { width: 90%; padding: 15px 5%; }
-            .nav-links { display: none; }
-        }
+        /* Reklam Alanları */
+        .ad-box { width: 100%; text-align: center; margin: 40px 0; background: rgba(255,255,255,0.01); border-radius: 10px; min-height: 100px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">TUĞRA TECH</div>
+        <div class="logo">Tuğra Tech AI</div>
         <div class="nav-links">
             <a href="#ozellikler">Özellikler</a>
             <a href="#hakkimda">Hakkımda</a>
-            <a href="https://youtube.com/@tugratech" target="_blank">Kanalım</a>
-            <a href="#indir" style="color: var(--primary);">İndir</a>
+            <a href="#yolharitasi">Yol Haritası</a>
+            <a href="https://www.youtube.com/@combat_patlat" target="_blank">Kanalım</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>GELECEĞİN <br> <span class="gradient-text">YAPAY ZEKASI</span></h1>
-        <p>Tuğra Tech tarafından geliştirilen, tamamen yerel çalışan ve verilerinizi asla paylaşmayan yeni nesil Python asistanı.</p>
-        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn-main" id="indir">SİSTEMİ ŞİMDİ İNDİR</a>
-    </section>
+    <header class="hero">
+        <h1>GELECEĞİN <br> <span class="gradient">DİJİTAL ASİSTANI</span></h1>
+        <p style="color:var(--text-dim); font-size: 1.3rem; margin: 30px 0;">Python çekirdeği ile geliştirilmiş, tamamen yerel çalışan AI ekosistemi.</p>
+        <a href="https://drive.google.com/uc?export=download&id=1RRk8nM8U2Z23NsFFsPBesqWwZTdEvCOS" class="btn">PROJEYİ ÜCRETSİZ İNDİR</a>
+    </header>
 
-    <div style="text-align: center; margin: 20px 0;">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6720040706627493" data-ad-slot="YOUR_AD_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <div class="ad-box">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6720040706627493" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <section id="ozellikler">
-        <h2>Teknolojik Altyapı</h2>
+        <h2 style="font-size: 3rem;">Neden Tuğra Tech?</h2>
         <div class="grid">
             <div class="card">
-                <h3>0.2ms Yanıt Süresi</h3>
-                <p>Python'un en hızlı kütüphaneleriyle optimize edilen motorumuz, komutlarınızı bulut sunucularına göndermeden yerel işlemcinizde işler. Bu, piyasadaki asistanlardan 5 kat daha hızlı işlem yapmasını sağlar.</p>
+                <h3>Güvenlik Öncelikli</h3>
+                <p>Verileriniz internete yüklenmez. Ses tanıma ve komut işleme süreçleri tamamen kendi donanımınızda gerçekleşir. %100 gizlilik garantisi sunuyoruz.</p>
             </div>
             <div class="card">
-                <h3>Modüler Python Çekirdeği</h3>
-                <p>Asistanımız tamamen açık bir mimariye sahiptir. Kendi Python scriptlerinizi entegre edebilir, ev otomasyonundan veri analizine kadar her şeyi sesinizle yönetebilirsiniz.</p>
+                <h3>Yüksek Performans</h3>
+                <p>Python 3.10+ ve optimize edilmiş sinir ağları sayesinde 0.2 saniyelik komut tepki süresi. Düşük işlemci ve RAM kullanımı için özel modüller geliştirildi.</p>
             </div>
             <div class="card">
-                <h3>Gelişmiş Veri Gizliliği</h3>
-                <p>Günümüzde veri her şeydir. Tuğra Tech asistanı, internet bağlantısı olmadan da çalışabilir. Hiçbir ses kaydınız veya kişisel veriniz üçüncü taraf şirketlere iletilmez.</p>
+                <h3>Kişiselleştirilebilir</h3>
+                <p>Kendi modüllerinizi yazın, API entegrasyonlarını yapın ve asistanınızı kendi çalışma akışınıza göre şekillendirin. Sınır sadece hayal gücünüz.</p>
             </div>
         </div>
     </section>
 
     <section id="hakkimda" style="background: rgba(56, 189, 248, 0.02);">
-        <h2>Hakkımda</h2>
-        <div class="about-text">
-            <p>Merhaba, ben <span class="highlight">Tuğra</span>. Yazılım dünyasına olan merakım, teknolojinin sadece tüketilen değil, üretilen bir şey olması gerektiğine olan inancımla başladı. Bu asistan projesi, aylarca süren <span class="highlight">Python çekirdek geliştirmeleri</span>, yüzlerce hata ayıklama (debug) süreci ve algoritma optimizasyonlarının bir sonucudur.</p>
-            <p>Gecelerimi kod satırları arasında harcayarak, karmaşık API entegrasyonlarını ve ses tanıma kütüphanelerini en verimli hale getirmek için uğraştım. Amacım, insanlara kendi bilgisayarlarında tam kontrol sahibi olabilecekleri, güvenli bir dijital yardımcı sunmaktı. Tuğra Tech markası altında, her satırını bizzat yazdığım bu projeyi sürekli güncel tutarak geliştirmeye devam ediyorum.</p>
+        <h2 style="font-size: 3rem;">Yazılım Hikayem</h2>
+        <div style="max-width: 800px; color: var(--text-dim); font-size: 1.2rem; line-height: 2;">
+            <p>Yazılım dünyasına ilk adımımı attığım günden beri, teknolojiyi sadece bir kullanıcı olarak değil, bir üretici olarak görmeyi tercih ettim. Tuğra Tech AI, bu vizyonun en somut örneğidir.</p>
+            <p>Haftalarca süren kodlama maratonları, karmaşık kütüphane çakışmalarını çözme ve en doğru yapay zeka algoritmasını bulma çabasıyla geçen geceler sonunda; bugün karşınızda duran stabil yapıyı inşa ettim. Bu proje benim için sadece bir kod dizini değil, teknolojiye olan tutkumun bir yansımasıdır.</p>
         </div>
     </section>
 
-    <div style="text-align: center; margin: 40px 0;">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6720040706627493" data-ad-slot="YOUR_AD_SLOT_2" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <div class="ad-box">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6720040706627493" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <footer>
-        <p>PATENT © 2026 TUĞRA TECH - TÜM HAKLARI SAKLIDIR</p>
-        <p style="font-size: 0.7rem; margin-top: 10px;">Yazılım ve Altyapı: Tuğra Tech Software Team</p>
+    <section id="yolharitasi">
+        <h2 style="font-size: 3rem;">Gelecek Planları</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>2026 Q1</h3>
+                <p>Görüntü işleme desteği ve kamera üzerinden nesne tanıma modüllerinin sisteme entegrasyonu.</p>
+            </div>
+            <div class="card">
+                <h3>2026 Q2</h3>
+                <p>Mobil uygulama desteği (Android & iOS) üzerinden yerel sunucuya uzaktan erişim imkanı.</p>
+            </div>
+            <div class="card">
+                <h3>2026 Q3</h3>
+                <p>Büyük dil modelleri (LLM) ile daha doğal ve akıcı sohbet yeteneğinin kazandırılması.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 60px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p style="font-weight: 800; color: var(--primary);">TUĞRA TECH SOFTWARE SOLUTIONS</p>
+        <p style="color: var(--text-dim); font-size: 0.8rem;">Tüm hakları saklıdır © 2026</p>
     </footer>
 
 </body>
