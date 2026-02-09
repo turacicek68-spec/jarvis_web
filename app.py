@@ -4,56 +4,30 @@ import os
 
 app = Flask(__name__)
 
-# --- BASİT VERİ TABANI ---
 ACTIVE_DEVICES = set() 
-
-# --- 1. WEB ARAYÜZÜ ---
 
 @app.route('/')
 def index():
-    # Bu rota templates/index.html dosyanı kullanıcıya gösterir
     return render_template('index.html')
 
-# --- 🛡️ ADS.TXT VE STATİK DOSYA ÇÖZÜMÜ (Google Onayı İçin Kritik) ---
+# ADS.TXT ÇÖZÜMÜ: Google'ın dosyayı bulması için şart
 @app.route('/ads.txt')
 def ads_txt():
-    """
-    Google botları jarvis-web-three.vercel.app/ads.txt adresine geldiğinde 
-    ana dizindeki veya static klasöründeki ads.txt dosyasını okuyabilmelerini sağlar.
-    """
-    # Dosyanın nerede olduğuna bakmaksızın güvenli bir şekilde sunar
+    # Dosyayı ana dizinden (app.py yanından) çeker
     return send_from_directory(app.root_path, 'ads.txt')
 
 @app.route('/status')
 def status():
-    return f"Jarvis Sunucusu Aktif. Kayitli Cihaz Sayisi: {len(ACTIVE_DEVICES)}"
-
-# --- 2. JARVIS API (EXE Bağlantısı İçin) ---
+    return f"Sistem Aktif. Kayitli Cihaz: {len(ACTIVE_DEVICES)}"
 
 @app.post("/api/activate")
 def activate():
     data = request.get_json()
-    if not data:
-        return jsonify({"ok": False, "error": "Veri gonderilmedi"}), 400
-        
-    device_id = data.get("device_id")
-    if device_id:
-        ACTIVE_DEVICES.add(device_id)
-        return jsonify({"ok": True, "message": "Jarvis Aktif Edildi!"})
-    return jsonify({"ok": False, "error": "Cihaz ID bulunamadi"}), 400
+    if data and "device_id" in data:
+        ACTIVE_DEVICES.add(data.get("device_id"))
+        return jsonify({"ok": True, "message": "Aktif Edildi"})
+    return jsonify({"ok": False, "error": "Hata"}), 400
 
-@app.post("/api/ping")
-def ping():
-    data = request.get_json()
-    if not data:
-        return jsonify({"ok": False, "error": "Veri gonderilmedi"}), 400
-
-    device_id = data.get("device_id")
-    if device_id in ACTIVE_DEVICES:
-        return jsonify({"ok": True, "status": "online"})
-    return jsonify({"ok": False, "error": "Cihaz kaydi yok"}), 403
-
-# --- RENDER/VERCEL ÇALIŞTIRMA AYARI ---
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
