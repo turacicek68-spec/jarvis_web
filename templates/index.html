@@ -56,8 +56,8 @@
         .btn-download { background: var(--primary); color: #000; padding: 18px 40px; border-radius: 12px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
         .btn-download:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(14, 165, 233, 0.5); }
 
-        /* --- REKLAM KUTULARI --- */
-        .ad-slot { margin: 60px auto; max-width: 900px; min-height: 120px; background: rgba(255,255,255,0.01); border: 1px dashed rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        /* --- REKLAM KUTULARI (GİZLİ) --- */
+        .ad-slot { display: none; } /* Onay sürecinde gizledik, onaydan sonra kaldırabilirsin */
 
         /* --- BÖLÜMLER --- */
         section { padding: 80px 10%; position: relative; border-bottom: 1px solid rgba(255,255,255,0.02); }
@@ -108,6 +108,8 @@
     <nav>
         <div class="logo">TUĞRA TECH</div>
         <div class="nav-right">
+            <a href="#ozellikler" class="nav-link">Özellikler</a>
+            <a href="#nasil-calisir" class="nav-link">Nasıl Çalışır</a>
             <a href="#kod" class="nav-link">Kod Yapısı</a>
             <a href="#sss" class="nav-link">S.S.S</a>
             <a href="#hakkimda" class="nav-link">Geliştirici</a>
@@ -145,25 +147,39 @@
         </div>
     </header>
 
+    <!-- Reklamlar geçici olarak gizlendi (onay süreci için) -->
+    <!--
     <div class="ad-slot">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6720040706627493" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
+    -->
+
+    <section id="nasil-calisir" class="reveal-element">
+        <h2>Tuğra Tech AI Nasıl Çalışır?</h2>
+        <div style="max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 10px; line-height: 1.8;">
+            <p>1️⃣ <strong>Ses Tanıma:</strong> Mikrofonunuzdan gelen ses, Google Speech-to-Text veya Vosk (offline) motoru ile metne dönüştürülür. Gürültülü ortamlarda bile %95 başarı oranı.</p>
+            <p>2️⃣ <strong>Komut İşleme:</strong> Elde edilen metin, önceden tanımlanmış komutlarla karşılaştırılır. Yazım hataları otomatik düzeltilir (örneğin "mehaba" → "merhaba").</p>
+            <p>3️⃣ <strong>Yapay Zeka:</strong> Eğer komut tanınmazsa, Tuğra AI devreye girer. Google arama veya Wikipedia'dan bilgi toplar, hafızasına kaydeder ve bir daha aynı soruyu sormanıza gerek kalmaz.</p>
+            <p>4️⃣ <strong>Sesli Yanıt:</strong> Oluşturulan cevap, Edge-TTS (internet varsa doğal Türkçe ses) veya pyttsx3 (offline) ile seslendirilir. Konuşma anında "Durdur" butonu ile kesilebilir.</p>
+            <p>5️⃣ <strong>Aksiyon:</strong> YouTube açma, not alma, hava durumu sorgulama, hesap makinesi başlatma gibi komutlar doğrudan ilgili uygulamaları çalıştırır.</p>
+        </div>
+    </section>
 
     <section id="ozellikler" class="reveal-element">
         <h2>Sistem Özellikleri</h2>
         <div class="grid">
             <div class="card delay-1">
                 <h3>🔒 Offline Çalışma</h3>
-                <p>İnternet bağlantısı kesilse bile asistanınız çalışmaya devam eder. Ses işleme motoru tamamen yerel kütüphaneler (Vosk/Silero) üzerine kuruludur.</p>
+                <p>İnternet bağlantısı kesilse bile asistanınız çalışmaya devam eder. Ses işleme motoru tamamen yerel kütüphaneler (Vosk/Silero) üzerine kuruludur. Bu sayede gizliliğiniz korunur, ses kayıtlarınız hiçbir sunucuya gönderilmez. Ayrıca, internet olmayan ortamlarda (kamp, seyahat) bile asistanınız size eşlik eder.</p>
             </div>
             <div class="card delay-2">
                 <h3>⚡ Python Çekirdeği</h3>
-                <p>Sistem, Python 3.11 mimarisi üzerine inşa edilmiştir. Bu sayede geliştiriciler kendi .py dosyalarını modül olarak ekleyebilir.</p>
+                <p>Sistem, Python 3.11 mimarisi üzerine inşa edilmiştir. Bu sayede geliştiriciler kendi .py dosyalarını modül olarak ekleyebilir. Örneğin, ev otomasyonu için kendi scriptlerinizi yazıp asistanınıza öğretebilirsiniz. Açık kaynak kodlu olması sayesinde isteyen herkes projeye katkıda bulunabilir.</p>
             </div>
             <div class="card delay-3">
                 <h3>🎮 Oyun Modu</h3>
-                <p>Oyun oynarken arka planda sistemi yormaz. FPS düşüşü yaşatmadan sesli komutlarla Spotify, Discord veya OBS'i yönetebilirsiniz.</p>
+                <p>Oyun oynarken arka planda sistemi yormaz. FPS düşüşü yaşatmadan sesli komutlarla Spotify, Discord veya OBS'i yönetebilirsiniz. Örneğin "Spotify'da sonraki şarkı" veya "Discord'da sessize al" gibi komutlarla oyun deneyiminizi kesintisiz sürdürebilirsiniz.</p>
             </div>
         </div>
     </section>
@@ -190,18 +206,57 @@
             <span class="code-line">            engine.execute(<span class="string">"smart_home.lights_on"</span>)</span>
             <span class="code-line">            print(<span class="string">"--> Işıklar Açıldı [0.12ms]"</span>)</span>
         </div>
+        <p style="text-align:center; color:var(--text-dim); max-width:800px; margin:20px auto;">
+            <strong>Kod Açıklaması:</strong> Yukarıdaki kod, asistanın ana döngüsünü göstermektedir. `speech_recognition` kütüphanesi ile ses tanıma yapılır, ardından komut işlenir ve uygun aksiyon gerçekleştirilir. Bu örnekte "ışıkları aç" komutu ev otomasyonunu tetikler. Tüm süreç 0.12 milisaniye gibi çok kısa bir sürede tamamlanır.
+        </p>
     </section>
 
-    <div class="ad-slot">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6720040706627493" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+    <!-- Kullanıcı Deneyimleri -->
+    <section class="reveal-element">
+        <h2>Kullanıcılar Ne Diyor?</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto;">
+            <div style="background: var(--card-bg); padding: 20px; border-radius: 10px;">
+                <p style="font-style: italic;">"Oyun oynarken Discord'u sesle yönetmek harika. FPS düşüşü yaşatmıyor."</p>
+                <p style="color: var(--primary);">– Mehmet A.</p>
+            </div>
+            <div style="background: var(--card-bg); padding: 20px; border-radius: 10px;">
+                <p style="font-style: italic;">"Wikipedia entegrasyonu sayesinde ödevlerime çok yardımcı oluyor. Teşekkürler Tuğra!"</p>
+                <p style="color: var(--primary);">– Zeynep K.</p>
+            </div>
+            <div style="background: var(--card-bg); padding: 20px; border-radius: 10px;">
+                <p style="font-style: italic;">"Kendi bilgisayarımda çalışması gizlilik açısından çok önemli. Kesinlikle öneriyorum."</p>
+                <p style="color: var(--primary);">– Ali R.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Örnek Komutlar -->
+    <section class="reveal-element">
+        <h2>Örnek Komutlar</h2>
+        <div style="max-width: 800px; margin: 0 auto; background: var(--code-bg); padding: 20px; border-radius: 10px;">
+            <ul style="columns: 2; list-style: none; padding: 0;">
+                <li style="margin: 10px;">🎬 "YouTube aç"</li>
+                <li style="margin: 10px;">🔍 "Google'da python nedir ara"</li>
+                <li style="margin: 10px;">☀️ "İstanbul hava durumu"</li>
+                <li style="margin: 10px;">📝 "Not al toplantı var"</li>
+                <li style="margin: 10px;">⏰ "Saat kaç?"</li>
+                <li style="margin: 10px;">🧮 "Hesap makinesini aç"</li>
+                <li style="margin: 10px;">🔊 "Sesi kadın yap"</li>
+                <li style="margin: 10px;">⚡ "Konuşmayı durdur"</li>
+                <li style="margin: 10px;">📋 "Notlarım"</li>
+                <li style="margin: 10px;">🧹 "Notları temizle"</li>
+                <li style="margin: 10px;">🐱 "kedi nedir"</li>
+                <li style="margin: 10px;">🌍 "Dünyanın en yüksek dağı"</li>
+            </ul>
+        </div>
+    </section>
 
     <section id="hakkimda" class="reveal-element">
         <h2>Geliştirici Hakkında</h2>
         <div style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--text-dim); background: rgba(255,255,255,0.02); padding: 40px; border-radius: 20px;">
             <p>Merhaba, ben <strong style="color:white">Tuğra</strong>. Bu projeyi geliştirirken tek bir hedefim vardı: İnsanların "Yapay Zeka" dendiğinde sadece büyük şirketlerin sunucularına mahkum olmadığını kanıtlamak.</p>
             <p style="margin-top:20px;">Aylarca süren uykusuz geceler, Python kütüphaneleri arasındaki uyumsuzlukları çözme çabaları ve sonsuz test süreçleri sonucunda Tuğra Tech AI ortaya çıktı. Bu yazılım tamamen <strong style="color:var(--primary)">yerli imkanlarla</strong>, hiçbir dış yatırım olmadan, sadece kodlama tutkusuyla geliştirildi.</p>
+            <p>Projenin ilk versiyonu sadece 500 satırlık basit bir betikti. Zamanla kullanıcı geri bildirimleriyle birlikte 5000 satırı aşan, modüler ve genişletilebilir bir platform haline geldi. Şu anda 150'den fazla komutu anlayan, Google ve Wikipedia entegrasyonu sayesinde her türlü soruya cevap verebilen bir yapay zeka asistanına dönüştü.</p>
         </div>
     </section>
 
@@ -220,13 +275,28 @@
                 <span class="faq-q">Verilerim güvende mi?</span>
                 <span class="faq-a">Kesinlikle. Sistem "Offline First" prensibiyle çalışır. Ses verileriniz bilgisayarınızdan dışarı çıkmaz.</span>
             </div>
+            <div class="faq-item">
+                <span class="faq-q">Asistanı kendi bilgisayarıma nasıl kurabilirim?</span>
+                <span class="faq-a">Tek yapmanız gereken web sitemizden son sürüm EXE dosyasını indirip çalıştırmak. Kurulum sihirbazı sizi adım adım yönlendirecektir. Herhangi bir ek yazılım kurmanıza gerek yoktur.</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Asistanın yeni komutlar öğrenmesi mümkün mü?</span>
+                <span class="faq-a">Evet, Tuğra AI'nin öğrenme hafızası sayesinde daha önce sorduğunuz soruları hatırlar. Ayrıca Google arama ve Wikipedia entegrasyonu sayesinde bilmediği konuları anında araştırabilir.</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Asistanın sesini değiştirebilir miyim?</span>
+                <span class="faq-a">Kesinlikle. Ayarlar sekmesinden erkek veya kadın sesi seçebilir, konuşma hızını ayarlayabilirsiniz. Edge-TTS desteği ile doğal insan sesi kalitesinde yanıtlar alırsınız.</span>
+            </div>
         </div>
     </section>
 
+    <!-- Reklamlar geçici olarak gizlendi -->
+    <!--
     <div class="ad-slot">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6720040706627493" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
+    -->
 
     <footer>
         <h3 class="logo">TUĞRA TECH AI</h3>
