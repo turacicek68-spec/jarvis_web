@@ -3,478 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tuğra Tech AI - Python tabanlı, tamamen yerel çalışan, gizlilik odaklı yapay zeka asistanı. 150+ komut, offline ses tanıma, açık kaynak modüler yapı.">
-    <meta name="keywords" content="yapay zeka, sesli asistan, python, offline, gizlilik, türkçe asistan, tuğra tech, vosk, edge-tts">
-    <meta name="author" content="Tuğra">
-    <meta name="google-adsense-account" content="ca-pub-6720040706627493">
-    <title>Tuğra Tech AI | Yerel, Hızlı, Gizlilik Odaklı Sesli Asistan</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="Jarvis - Tuğra Tech tarafından geliştirilen Türkçe yapay zeka destekli sesli asistan. Sesli komutlar, hava durumu, not alma ve daha fazlası.">
+    <meta name="keywords" content="yapay zeka asistan, türkçe sesli asistan, jarvis, tugra tech, AI, voice assistant">
+    <meta name="author" content="Tuğra Tech">
+    <title>Tuğra Tech AI - Jarvis Yapay Zeka Asistan</title>
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         :root {
-            --bg: #030712;
-            --card-bg: #0f172a;
-            --primary: #0ea5e9;
-            --accent: #6366f1;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --code-bg: #1e293b;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
+            --bg: #0f0f1a;
+            --surface: #16213e;
+            --surface2: #1a1a2e;
+            --accent: #e94560;
+            --accent2: #0055ff;
+            --text: #e0e0e0;
+            --text-muted: #8888aa;
+            --border: rgba(255,255,255,0.08);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
-            overflow-x: hidden;
         }
-        /* Animasyonlar */
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(14,165,233,0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(14,165,233,0); }
-            100% { box-shadow: 0 0 0 0 rgba(14,165,233,0); }
-        }
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .reveal { animation: reveal 0.8s ease forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
 
-        /* Navigasyon */
+        /* NAV */
         nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 5%; background: rgba(3,7,18,0.95); backdrop-filter: blur(12px);
-            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15,15,26,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 64px;
         }
-        .logo {
-            font-weight: 800; font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .nav-links { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
-        .nav-links a {
-            color: var(--text-dim); text-decoration: none; font-weight: 600; font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover { color: var(--primary); }
-        .yt-btn {
-            background: var(--danger); color: white; padding: 10px 22px; border-radius: 40px;
-            font-weight: 700; display: flex; align-items: center; gap: 8px;
-            animation: pulseGlow 2s infinite; border: 1px solid rgba(255,255,255,0.2);
-            transition: 0.3s;
-        }
-        .yt-btn:hover { background: #b91c1c; transform: scale(1.02); }
+        .nav-logo { font-size: 1.2rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
 
-        /* Header */
-        header {
-            padding: 140px 5% 80px; text-align: center;
-            background: radial-gradient(circle at 70% 30%, rgba(14,165,233,0.12), transparent 60%);
+        /* HERO */
+        .hero {
+            min-height: 90vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 4rem 2rem;
         }
-        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
-        .gradient-text {
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        .hero-badge {
+            display: inline-block; background: rgba(233,69,96,0.15);
+            color: var(--accent); border: 1px solid rgba(233,69,96,0.3);
+            padding: 4px 16px; border-radius: 50px; font-size: 0.8rem;
+            margin-bottom: 1.5rem; letter-spacing: 1px;
         }
-        .sub-hero {
-            font-size: 1.25rem; color: var(--text-dim); max-width: 700px; margin: 20px auto 40px;
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+        .hero h1 span { color: var(--accent); }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .btn {
+            padding: 12px 28px; border-radius: 8px; font-size: 0.95rem;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            transition: transform 0.15s, opacity 0.15s;
+            display: inline-flex; align-items: center; gap: 8px;
         }
-        .btn-download {
-            background: var(--primary); color: #000; padding: 18px 45px; border-radius: 16px;
-            font-weight: 800; text-decoration: none; display: inline-block;
-            box-shadow: 0 10px 25px rgba(14,165,233,0.4); transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
-        }
-        .btn-download:hover { transform: translateY(-5px); box-shadow: 0 20px 30px rgba(14,165,233,0.5); }
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn-primary { background: var(--accent); color: #fff; border: none; }
+        .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
 
-        /* SmartScreen uyarısı */
-        .smart-warning {
-            background: rgba(245,158,11,0.1); border-left: 4px solid var(--warning);
-            padding: 15px 20px; max-width: 800px; margin: 40px auto 20px; border-radius: 8px;
-            color: #fcd34d; text-align: left; font-size: 0.95rem;
-        }
+        /* ÖZELLIKLER */
+        section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .section-title p { color: var(--text-muted); }
 
-        /* Bölümler */
-        section { padding: 80px 10%; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        h2 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; font-weight: 700; }
-        .grid-2, .grid-3 {
-            display: grid; gap: 30px;
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
-        .grid-2 { grid-template-columns: repeat(2,1fr); }
-        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); }
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .feature-card:hover { border-color: rgba(233,69,96,0.4); transform: translateY(-4px); }
+        .feature-icon {
+            width: 48px; height: 48px; border-radius: 10px;
+            background: rgba(233,69,96,0.15);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; margin-bottom: 1rem;
+        }
+        .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 0.9rem; color: var(--text-muted); }
 
-        /* Kartlar */
-        .card {
-            background: var(--card-bg); padding: 35px; border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.03); transition: 0.3s;
+        /* NASIL ÇALIŞIR */
+        .steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        .step {
+            display: flex; gap: 1.5rem; align-items: flex-start;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem;
         }
-        .card:hover {
-            transform: translateY(-8px); border-color: var(--primary);
-            background: linear-gradient(145deg, #132237, #0f172a);
+        .step-num {
+            flex-shrink: 0; width: 40px; height: 40px;
+            background: var(--accent); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1rem;
         }
-        .card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 20px; }
-        .card p { color: var(--text-dim); }
+        .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .step p { font-size: 0.9rem; color: var(--text-muted); }
 
-        /* Terminal */
-        .terminal {
-            background: var(--code-bg); border-radius: 20px; padding: 25px;
-            font-family: 'JetBrains Mono', monospace; border: 1px solid #2d3a4f;
-            box-shadow: 0 25px 50px -12px black; max-width: 900px; margin: 30px auto;
+        /* KOMUTLAR */
+        .commands-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
         }
-        .terminal-header { display: flex; gap: 10px; margin-bottom: 20px; }
-        .dot { width: 14px; height: 14px; border-radius: 50%; }
-        .red { background: var(--danger); }
-        .yellow { background: var(--warning); }
-        .green { background: var(--success); }
-        .code-line { display: block; margin: 6px 0; color: #cbd5e1; }
-        .keyword { color: #c084fc; }
-        .string { color: #86efac; }
-        .func { color: #60a5fa; }
-        .comment { color: #64748b; font-style: italic; }
-
-        /* İstatistikler */
-        .stats {
-            display: flex; justify-content: center; gap: 50px; flex-wrap: wrap;
-            background: var(--card-bg); padding: 40px; border-radius: 40px; margin-top: 30px;
+        .cmd-group h4 {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--accent); margin-bottom: 0.75rem;
         }
-        .stat-item { text-align: center; }
-        .stat-number {
-            font-size: 3rem; font-weight: 800; color: var(--primary); line-height: 1;
+        .cmd-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .cmd-list li {
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 6px; padding: 6px 12px;
+            font-size: 0.85rem; font-family: 'Courier New', monospace; color: var(--text-muted);
         }
-        .stat-label { color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
 
         /* SSS */
+        .faq { display: flex; flex-direction: column; gap: 1rem; }
         .faq-item {
-            background: rgba(255,255,255,0.02); margin-bottom: 15px; padding: 20px 25px;
-            border-radius: 16px; border-left: 4px solid var(--primary);
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 10px; overflow: hidden;
         }
-        .faq-q { font-weight: 700; font-size: 1.2rem; margin-bottom: 10px; display: block; }
-        .faq-a { color: var(--text-dim); }
+        .faq-q {
+            padding: 1rem 1.25rem; font-weight: 600; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.95rem;
+        }
+        .faq-q::after { content: '+'; font-size: 1.2rem; color: var(--accent); }
+        .faq-q.open::after { content: '−'; }
+        .faq-a {
+            padding: 0 1.25rem; max-height: 0; overflow: hidden;
+            font-size: 0.9rem; color: var(--text-muted);
+            transition: max-height 0.3s ease, padding 0.3s;
+        }
+        .faq-a.open { max-height: 200px; padding: 0 1.25rem 1rem; }
 
-        /* Footer */
+        /* HAKKINDA */
+        .about-box {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; padding: 3rem; text-align: center; max-width: 700px;
+            margin: 0 auto;
+        }
+        .about-box h2 { margin-bottom: 1rem; }
+        .about-box p { color: var(--text-muted); margin-bottom: 1rem; }
+
+        /* FOOTER */
         footer {
-            padding: 60px 10% 30px; background: #020617; text-align: center;
+            border-top: 1px solid var(--border);
+            text-align: center; padding: 2rem;
+            color: var(--text-muted); font-size: 0.85rem;
         }
-        .footer-links { display: flex; justify-content: center; gap: 30px; margin: 30px 0; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-dim); text-decoration: none; }
-        .footer-links a:hover { color: var(--primary); }
-        hr { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 40px 0; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 15px; }
-            .nav-links { justify-content: center; }
-            h2 { font-size: 2rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-            section { padding: 60px 5%; }
+        /* ADSENSE ALANI */
+        .ad-banner {
+            background: var(--surface); border: 1px dashed var(--border);
+            border-radius: 8px; padding: 1rem; text-align: center;
+            color: var(--text-muted); font-size: 0.8rem; margin: 2rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGASYON -->
-    <nav>
-        <div class="logo">TUĞRA TECH AI</div>
-        <div class="nav-links">
-            <a href="#ozellikler">Özellikler</a>
-            <a href="#nasil-calisir">Çalışma Prensibi</a>
-            <a href="#kod">Kod</a>
-            <a href="#surumler">Sürümler</a>
-            <a href="#sss">SSS</a>
-            <a href="#hakkimda">Geliştirici</a>
-            <a href="https://www.youtube.com/@combat_patlat" target="_blank" class="yt-btn">
-                <span>▶ ABONE OL</span>
-                <span style="font-size:0.7rem; opacity:0.9;">(Destek)</span>
-            </a>
+<!-- NAVİGASYON -->
+<nav>
+    <div class="nav-logo">⚡ TUĞRA TECH</div>
+    <ul class="nav-links">
+        <li><a href="#ozellikler">Özellikler</a></li>
+        <li><a href="#nasil">Nasıl Çalışır</a></li>
+        <li><a href="#komutlar">Komutlar</a></li>
+        <li><a href="#sss">SSS</a></li>
+        <li><a href="#hakkinda">Hakkında</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge">🤖 Yapay Zeka Destekli</div>
+    <h1>Türkçe Konuşan<br>Kişisel Asistanın<br><span>Jarvis</span></h1>
+    <p>Sesli komutlarla bilgisayarını yönet, hava durumunu öğren, not al ve internet üzerinde arama yap. Tamamen Türkçe, tamamen senin için.</p>
+    <div class="btn-group">
+        <a href="#indir" class="btn btn-primary">⬇️ İndir (Windows)</a>
+        <a href="#nasil" class="btn btn-secondary">Nasıl Çalışır?</a>
+    </div>
+</div>
+
+<!-- REKLAM ALANI -->
+<div style="max-width: 800px; margin: 0 auto; padding: 0 2rem;">
+    <!-- Google AdSense kodu buraya gelecek -->
+    <div class="ad-banner">Reklam Alanı</div>
+</div>
+
+<!-- ÖZELLİKLER -->
+<section id="ozellikler">
+    <div class="section-title">
+        <h2>Neler Yapabilir?</h2>
+        <p>Jarvis, günlük hayatını kolaylaştırmak için tasarlanmış özelliklerle dolu</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🎤</div>
+            <h3>Sesli Komut Tanıma</h3>
+            <p>Türkçe konuşarak komut ver. Google'ın ses tanıma teknolojisiyle yüksek doğruluk oranı.</p>
         </div>
-    </nav>
-
-    <!-- HERO -->
-    <header class="reveal">
-        <h1>SINIRSIZ <span class="gradient-text">YEREL ZEKA</span></h1>
-        <p class="sub-hero">Kendi bilgisayarınızın işlemcisiyle çalışan, internet olmadan bile sizi anlayan, verilerinizi asla dışarı göndermeyen açık kaynak asistan.</p>
-        <a href="https://drive.google.com/uc?export=download&id=1RjxO-CI47HFe7dOPYksmybCQXG8utpbZ" class="btn-download">⚡ SON SÜRÜMÜ İNDİR (v2.4)</a>
-
-        <div class="smart-warning">
-            <strong>⚠️ Windows SmartScreen uyarısı:</strong> Yazılımımız henüz çok yeni olduğu için Windows tarafından tanınmıyor olabilir. 
-            “Daha fazla bilgi” → “Yine de çalıştır” ile güvenle kurabilirsiniz. Dosya virüs taramasından geçmiştir.
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>Yapay Zeka Cevapları</h3>
+            <p>Wikipedia ve internet araması sayesinde binlerce konuda Türkçe cevap alabilirsin.</p>
         </div>
-
-        <div class="stats">
-            <div class="stat-item"><span class="stat-number">0.2s</span><span class="stat-label">Tepki Süresi</span></div>
-            <div class="stat-item"><span class="stat-number">%100</span><span class="stat-label">Gizlilik</span></div>
-            <div class="stat-item"><span class="stat-number">150+</span><span class="stat-label">Komut</span></div>
-            <div class="stat-item"><span class="stat-number">4.8★</span><span class="stat-label">Kullanıcı Puanı</span></div>
+        <div class="feature-card">
+            <div class="feature-icon">🔊</div>
+            <h3>Yüksek Kaliteli Türkçe Ses</h3>
+            <p>Microsoft Edge TTS ile doğal Türkçe sesli cevaplar. Erkek ve kadın ses seçeneği.</p>
         </div>
-    </header>
-
-    <!-- ÖZELLİKLER (genişletilmiş) -->
-    <section id="ozellikler" class="reveal delay-1">
-        <h2>🚀 Üstün Özellikler</h2>
-        <div class="grid-3">
-            <div class="card">
-                <h3>🔒 %100 Yerel Çalışma</h3>
-                <p>Ses tanıma (Vosk), metin işleme ve yanıt üretme tamamen bilgisayarınızda gerçekleşir. İnternet kesilse bile asistan çalışmaya devam eder. Özel hayatınız size aittir.</p>
-                <p style="margin-top:15px;"><strong>Teknik:</strong> Vosk küçük Türkçe model (40 MB) ile düşük gecikme, isteğe bağlı Google Speech (çevrimiçi) geçişi.</p>
-            </div>
-            <div class="card">
-                <h3>🧩 Modüler Python Mimarisi</h3>
-                <p>Herkes kendi .py dosyasını yazarak yeni komutlar ekleyebilir. Örneğin ev otomasyonu, özel API çağrıları veya oyun içi makrolar. Açık kaynak sayesinde topluluk sürekli büyüyor.</p>
-                <p><strong>Plugin örnekleri:</strong> akıllı lamba kontrolü, kripto fiyat sorgulama, e-posta gönderme.</p>
-            </div>
-            <div class="card">
-                <h3>🎮 Oyun Modu & Düşük Kaynak</h3>
-                <p>Oyun oynarken arka planda çalışır; FPS düşüşü yaşatmaz. Sesli komutla Discord’u sustur, Spotify’da şarkı değiştir, OBS kaydını başlat. CPU kullanımı %2’nin altında.</p>
-            </div>
-            <div class="card">
-                <h3>🧠 Yapay Zeka Hafızası</h3>
-                <p>Daha önce sorduğunuz soruları hatırlar. Örneğin “kedi nedir” dedikten sonra “peki ya köpek” dediğinizde bağlamı anlar. Wikipedia ve Google arama entegrasyonu ile bilmediği konuları öğrenir.</p>
-            </div>
-            <div class="card">
-                <h3>🗣️ Doğal Ses Sentezi</h3>
-                <p>Edge-TTS (çevrimiçi) ile gerçek insan sesi kalitesinde Türkçe (kadın/erkek), pyttsx3 ile offline sentez. Konuşma hızı ve tonu ayarlanabilir.</p>
-            </div>
-            <div class="card">
-                <h3>📋 Gelişmiş Not Alma</h3>
-                <p>Sesli komutla not alabilir, notlarınızı listeleyebilir, silebilirsiniz. Notlar yerel JSON dosyasında saklanır, senkronizasyon için bulut seçeneği (isteğe bağlı).</p>
-            </div>
+        <div class="feature-card">
+            <div class="feature-icon">☀️</div>
+            <h3>Hava Durumu</h3>
+            <p>Şehrini bir kez ayarla, "hava nasıl" diyerek anlık hava durumu bilgisi al.</p>
         </div>
-    </section>
-
-    <!-- NASIL ÇALIŞIR (detaylı adımlar) -->
-    <section id="nasil-calisir" class="reveal delay-2">
-        <h2>⚙️ Çalışma Prensibi (Adım Adım)</h2>
-        <div style="max-width:1000px; margin:0 auto;">
-            <div style="display:flex; flex-direction:column; gap:25px;">
-                <div style="background:var(--card-bg); padding:25px; border-radius:20px;">
-                    <h3 style="color:var(--primary);">1. Ses Tanıma (Offline/Online)</h3>
-                    <p>Varsayılan olarak <strong>Vosk (offline)</strong> kullanılır. 40 MB’lık Türkçe model sayesinde internet olmadan yüksek doğruluk. Gürültülü ortamlarda bile %90+ başarım. İnternet varsa Google Speech’e geçilebilir (daha yüksek doğruluk).</p>
-                </div>
-                <div style="background:var(--card-bg); padding:25px; border-radius:20px;">
-                    <h3 style="color:var(--primary);">2. Komut Çözümleme & Düzeltme</h3>
-                    <p>Metin, önceden tanımlı komut setiyle karşılaştırılır. Yazım hataları (örn: “merhaba” yerine “mehaba”) otomatik düzeltilir. Aynı anlama gelen farklı ifadeler (örn: “saati söyle”, “saat kaç”) eşlenir.</p>
-                </div>
-                <div style="background:var(--card-bg); padding:25px; border-radius:20px;">
-                    <h3 style="color:var(--primary);">3. Anlamlandırma & Hafıza</h3>
-                    <p>Eğer komut tanınmazsa, asistan devreye girer: Google’da arama yapar, Wikipedia’dan özet çeker veya daha önce öğrendiği bir bilgiyi hafızasından getirir. Hafıza SQLite veritabanında tutulur.</p>
-                </div>
-                <div style="background:var(--card-bg); padding:25px; border-radius:20px;">
-                    <h3 style="color:var(--primary);">4. Aksiyon & Sesli Yanıt</h3>
-                    <p>Komut bir eylem içeriyorsa (örneğin “YouTube aç”) ilgili uygulama başlatılır. Değilse, oluşturulan yanıt Edge-TTS (doğal ses) veya pyttsx3 ile okunur. Tüm süreç ortalama 0.2 saniye sürer.</p>
-                </div>
-            </div>
+        <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>Not Alma</h3>
+            <p>"Not al: ekmek alıcam" de, Jarvis kaydetsin. Notlarını istediğin zaman görüntüle.</p>
         </div>
-    </section>
-
-    <!-- KOD ÖRNEKLERİ (genişletilmiş terminal) -->
-    <section id="kod" class="reveal delay-3">
-        <h2>📁 Geliştirici Merkezi</h2>
-        <p style="text-align:center; color:var(--text-dim); max-width:700px; margin:0 auto 30px;">Tuğra Tech AI tamamen Python ile yazılmıştır. İşte çekirdek döngü ve plugin ekleme örneği.</p>
-
-        <div class="terminal">
-            <div class="terminal-header">
-                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                <span style="margin-left:10px; color:#64748b;">ana_asi̇stan.py</span>
-            </div>
-            <span class="code-line"><span class="keyword">import</span> speech_recognition <span class="keyword">as</span> sr</span>
-            <span class="code-line"><span class="keyword">from</span> core.brain <span class="keyword">import</span> NeuralEngine</span>
-            <span class="code-line"><span class="keyword">from</span> plugins <span class="keyword">import</span> smart_home, spotify_control</span>
-            <span class="code-line"><span class="comment"># Tuğra Tech AI v2.4 ana döngü</span></span>
-            <span class="code-line"><span class="keyword">def</span> <span class="func">main</span>():</span>
-            <span class="code-line">    engine = NeuralEngine(offline_model=<span class="string">"vosk-model-small-tr-0.3"</span>)</span>
-            <span class="code-line">    engine.say(<span class="string">"Tuğra Tech aktif. Nasıl yardımcı olabilirim?"</span>)</span>
-            <span class="code-line">    <span class="keyword">while</span> <span class="func">True</span>:</span>
-            <span class="code-line">        text = engine.listen()          <span class="comment"># mikrofon dinle</span></span>
-            <span class="code-line">        <span class="keyword">if</span> <span class="string">"spotify"</span> <span class="keyword">in</span> text <span class="keyword">and</span> <span class="string">"sonraki"</span> <span class="keyword">in</span> text:</span>
-            <span class="code-line">            spotify_control.next_track()</span>
-            <span class="code-line">            engine.say(<span class="string">"Geçildi."</span>)</span>
-            <span class="code-line">        <span class="keyword">elif</span> <span class="string">"ışıkları aç"</span> <span class="keyword">in</span> text:</span>
-            <span class="code-line">            smart_home.lights(<span class="string">"on"</span>)</span>
-            <span class="code-line">            engine.say(<span class="string">"Işıklar açıldı."</span>)</span>
-            <span class="code-line">        <span class="keyword">else</span>:</span>
-            <span class="code-line">            answer = engine.think(text)  <span class="comment"># AI hafıza + Wikipedia/Google</span></span>
-            <span class="code-line">            engine.say(answer)</span>
+        <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>İnternet Araması</h3>
+            <p>Google veya YouTube'u sesli komutla aç, arama yaptır. Hepsi bir komutla.</p>
         </div>
-
-        <div class="terminal" style="margin-top:30px;">
-            <div class="terminal-header">
-                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                <span style="margin-left:10px; color:#64748b;">plugins/benim_eklentim.py (örnek)</span>
-            </div>
-            <span class="code-line"><span class="comment"># Kendi komutunu eklemek çok kolay</span></span>
-            <span class="code-line"><span class="keyword">def</span> <span class="func">hava_durumu</span>(<span class="keyword">sehir</span>):</span>
-            <span class="code-line">    <span class="comment"># hava durumu API'si çağrılabilir</span></span>
-            <span class="code-line">    <span class="keyword">return</span> <span class="string">f"</span>{sehir}<span class="string">'de hava 20°C"</span></span>
-            <span class="code-line"></span>
-            <span class="code-line"><span class="comment"># main.py'de şu şekilde çağır:</span></span>
-            <span class="code-line"><span class="comment"># from plugins.benim_eklentim import hava_durumu</span></span>
-            <span class="code-line"><span class="comment"># sonra komut tanıma kısmına ekle</span></span>
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Özelleştirilebilir</h3>
+            <p>Asistan adını, sesini, hızını ve temayı istediğin gibi ayarla.</p>
         </div>
-        <p style="text-align:center; color:var(--text-dim); margin-top:20px;">🔧 Dileyen herkes kendi eklentisini yazıp toplulukla paylaşabilir.</p>
-    </section>
+        <div class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Hafıza Sistemi</h3>
+            <p>Daha önce sorduğun sorular kaydedilir. Aynı soruyu tekrar sorduğunda anında cevap verir.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Gizlilik Odaklı</h3>
+            <p>Tüm veriler kendi bilgisayarında saklanır. Buluta yüklenmez, sana aittir.</p>
+        </div>
+    </div>
+</section>
 
-    <!-- SÜRÜM GEÇMİŞİ (güncelleme kültürü) -->
-    <section id="surumler" class="reveal">
-        <h2>📅 Sürüm Geçmişi ve Yenilikler</h2>
-        <div style="max-width:800px; margin:0 auto;">
-            <div style="background:var(--card-bg); padding:20px; border-radius:16px; margin-bottom:15px;">
-                <span style="background:var(--primary); color:black; padding:4px 12px; border-radius:20px; font-weight:bold;">v2.4</span> <span style="color:var(--text-dim); margin-left:15px;">20 Şubat 2026</span>
-                <ul style="margin-top:15px; list-style-type: none;">
-                    <li>✅ Edge-TTS entegrasyonu (daha doğal kadın/erkek sesi)</li>
-                    <li>✅ Hafıza iyileştirmeleri: artık bağlamı 5 diyalog öncesine kadar hatırlıyor</li>
-                    <li>✅ Oyun modunda CPU kullanımı %30 azaltıldı</li>
-                    <li>✅ Yeni komutlar: "notlarımı oku", "çöp kutusunu boşalt"</li>
-                </ul>
-            </div>
-            <div style="background:var(--card-bg); padding:20px; border-radius:16px; margin-bottom:15px;">
-                <span style="background:var(--primary); color:black; padding:4px 12px; border-radius:20px; font-weight:bold;">v2.3</span> <span style="color:var(--text-dim); margin-left:15px;">5 Ocak 2026</span>
-                <ul style="margin-top:15px; list-style-type: none;">
-                    <li>✅ Vosk offline model eklendi (Türkçe destek)</li>
-                    <li>✅ Wikipedia özetleyici (Türkçe)</li>
-                    <li>✅ Sesli yanıtı durdurma özelliği</li>
-                </ul>
-            </div>
-            <div style="background:var(--card-bg); padding:20px; border-radius:16px;">
-                <span style="background:var(--primary); color:black; padding:4px 12px; border-radius:20px; font-weight:bold;">v2.0</span> <span style="color:var(--text-dim); margin-left:15px;">10 Ekim 2025</span>
-                <ul style="margin-top:15px; list-style-type: none;">
-                    <li>✅ İlk kararlı sürüm</li>
-                    <li>✅ 100+ temel komut</li>
-                    <li>✅ PyInstaller ile tek exe kurulum</li>
-                </ul>
+<!-- NASIL ÇALIŞIR -->
+<section id="nasil">
+    <div class="section-title">
+        <h2>Nasıl Çalışır?</h2>
+        <p>Sadece 3 adımda kurulum ve kullanım</p>
+    </div>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div>
+                <h3>İndir ve Kur</h3>
+                <p>Windows için hazırlanmış kurulum dosyasını indir. Çift tıkla, kurulum sihirbazı gerisini halleder. Python bilgisine gerek yok.</p>
             </div>
         </div>
-    </section>
-
-    <!-- KULLANICI YORUMLARI -->
-    <section class="reveal">
-        <h2>⭐ Kullanıcılar Ne Diyor?</h2>
-        <div class="grid-3">
-            <div class="card">
-                <p style="font-style:italic;">“Oyun oynarken Discord'u sesle susturmak müthiş. Hiç FPS düşüşü yaşamadım.”</p>
-                <p style="color:var(--primary); margin-top:15px;">– Mehmet A., 27</p>
-            </div>
-            <div class="card">
-                <p style="font-style:italic;">“Wikipedia entegrasyonu sayesinde çocuklarım ödevlerinde kullanıyor. Üstelik reklam yok, veri toplama yok.”</p>
-                <p style="color:var(--primary); margin-top:15px;">– Zeynep K., 34</p>
-            </div>
-            <div class="card">
-                <p style="font-style:italic;">“Kendi eklentimi yazıp evdeki akıllı prizleri kontrol ediyorum. Açık kaynak olması harika.”</p>
-                <p style="color:var(--primary); margin-top:15px;">– Emre Y., yazılım geliştirici</p>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div>
+                <h3>Mikrofon ve Ayarları Yap</h3>
+                <p>İlk çalıştırmada adını, şehrini ve ses tercihini ayarla. Sadece bir kere yapman yeterli. Jarvis bunları hatırlar.</p>
             </div>
         </div>
-    </section>
-
-    <!-- ÖRNEK KOMUT LİSTESİ -->
-    <section class="reveal">
-        <h2>🎤 Örnek Sesli Komutlar (150+)</h2>
-        <div style="background:var(--code-bg); padding:30px; border-radius:24px; max-width:1000px; margin:0 auto;">
-            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:15px;">
-                <div>• “YouTube aç”</div>
-                <div>• “Google'da python nedir ara”</div>
-                <div>• “İstanbul hava durumu”</div>
-                <div>• “Not al toplantı 14:00”</div>
-                <div>• “Notlarımı oku”</div>
-                <div>• “Saat kaç?”</div>
-                <div>• “Hesap makinesini çalıştır”</div>
-                <div>• “Sesi kadın yap”</div>
-                <div>• “Konuşmayı durdur”</div>
-                <div>• “Wikipedia'da Atatürk”</div>
-                <div>• “Bugün gündem ne?”</div>
-                <div>• “Kapat bilgisayarı”</div>
-                <div>• “Spotify'da çalma listem”</div>
-                <div>• “Dolar ne kadar?”</div>
-                <div>• “Hatırlatıcı ekle”</div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div>
+                <h3>Konuşmaya Başla</h3>
+                <p>"Jarvis" diyerek asistanı çağır veya yazarak komut ver. Sesli ya da yazılı, her ikisi de çalışır.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- SIKÇA SORULAN SORULAR (genişletilmiş) -->
-    <section id="sss" class="reveal">
-        <h2>❓ Sıkça Sorulan Sorular</h2>
-        <div style="max-width:900px; margin:0 auto;">
-            <div class="faq-item">
-                <span class="faq-q">Tuğra Tech AI ücretli mi?</span>
-                <span class="faq-a">Hayır, temel sürüm tamamen ücretsizdir. İleride ekstra eklentiler veya özel destek için gönüllü bağış sistemi düşünülebilir, ancak mevcut işlevsellik her zaman ücretsiz kalacak.</span>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">Hangi işletim sistemlerinde çalışır?</span>
-                <span class="faq-a">Şu an için Windows 10/11 (64-bit) tam destek. Linux (Ubuntu) üzerinde test ediliyor; yakında beta sürümü yayınlanacak. macOS için henüz plan yok.</span>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">Kurulum sırasında antivirüs uyarıyor, sorun var mı?</span>
-                <span class="faq-a">Hayır, yazılımımız açık kaynak kodlu olduğu için güvenli. Ancak yeni olduğu için bazı antivirüsler (özellikle Windows Defender) “tanınmayan yayıncı” uyarısı verebilir. Kaynak kodunu inceleyip kendiniz de derleyebilirsiniz.</span>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">Asistan Türkçe dışında dil biliyor mu?</span>
-                <span class="faq-a">Şu an sadece Türkçe destekleniyor. İngilizce model eklemek mümkün, ancak arayüz şu an Türkçe komutlara göre tasarlandı. Çoklu dil desteği gelecek sürümlerde planlanıyor.</span>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">Kendi komutlarımı nasıl eklerim?</span>
-                <span class="faq-a">“plugins” klasörüne yeni bir .py dosyası oluşturun, istediğiniz fonksiyonları tanımlayın ve ana döngüdeki komut tanıma kısmına ekleyin. Ayrıntılı doküman GitHub’da mevcut.</span>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">Verilerim nerede saklanıyor?</span>
-                <span class="faq-a">Tüm veriler (notlar, hatırlatıcılar, hafıza) bilgisayarınızda, %APPDATA%\TugraTechAI klasöründe JSON/SQLite dosyaları olarak tutulur. Kesinlikle buluta gönderilmez.</span>
-            </div>
+<!-- KOMUTLAR -->
+<section id="komutlar">
+    <div class="section-title">
+        <h2>Kullanabileceğin Komutlar</h2>
+        <p>Jarvis'e söyleyebileceğin komutlardan bazıları</p>
+    </div>
+    <div class="commands-grid">
+        <div class="cmd-group">
+            <h4>🌐 İnternet</h4>
+            <ul class="cmd-list">
+                <li>YouTube aç</li>
+                <li>Google aç</li>
+                <li>Python ara</li>
+                <li>Google'da haber ara</li>
+            </ul>
         </div>
-    </section>
-
-    <!-- GELİŞTİRİCİ HAKKINDA (samimi) -->
-    <section id="hakkimda" class="reveal">
-        <h2>👨‍💻 Geliştirici Hakkında</h2>
-        <div style="max-width:800px; margin:0 auto; background:rgba(255,255,255,0.02); padding:40px; border-radius:30px;">
-            <p>Merhaba, ben <strong style="color:white;">Tuğra</strong>. 16 yaşında kodlamaya başladım (şimdi 20). Bu projeyi geliştirme sebebim, insanların “yapay zeka” deyince sadece bulut tabanlı, veri toplayan sistemleri düşünmesiydi. Oysa güçlü bir bilgisayarınız varsa, her şeyi yerelde yapabilirsiniz.</p>
-            <p style="margin-top:20px;">Aylarca süren uykusuz geceler, kütüphane uyumsuzlukları, ses modeli eğitme çabaları... Sonunda ortaya <strong>Tuğra Tech AI</strong> çıktı. Tamamen açık kaynak, tamamen yerli. Kodları inceleyebilir, istediğiniz gibi değiştirebilirsiniz. Projeye destek olmak için YouTube’a abone olabilir veya GitHub’da yıldız verebilirsiniz.</p>
-            <div style="display:flex; gap:20px; margin-top:30px; justify-content:center;">
-                <a href="https://github.com/tugratech" style="color:var(--primary);">GitHub</a>
-                <a href="https://www.youtube.com/@combat_patlat" style="color:var(--primary);">YouTube</a>
-                <a href="#" style="color:var(--primary);">İletişim (tugra@tugratech.com)</a>
-            </div>
+        <div class="cmd-group">
+            <h4>📋 Bilgi</h4>
+            <ul class="cmd-list">
+                <li>Saat kaç?</li>
+                <li>Bugün tarih ne?</li>
+                <li>Hava durumu</li>
+                <li>2 çarpı 8 kaç?</li>
+            </ul>
         </div>
-    </section>
-
-    <!-- GİZLİLİK & KULLANIM KOŞULLARI (kısa metin) -->
-    <section style="padding:40px 10%;">
-        <h2>📄 Gizlilik Politikası & Kullanım Koşulları</h2>
-        <div style="background:var(--card-bg); padding:30px; border-radius:20px;">
-            <p><strong>Gizlilik:</strong> Tuğra Tech AI, kullanıcı verilerini toplamaz, kaydetmez veya üçüncü taraflarla paylaşmaz. Tüm işlemler yerel bilgisayarınızda gerçekleşir. Notlar ve hafıza verileri sadece sizin bilgisayarınızda saklanır. İnternet bağlantısı yalnızca sizin isteğinizle (örneğin Google arama) kullanılır.</p>
-            <p style="margin-top:20px;"><strong>Kullanım Koşulları:</strong> Yazılım “olduğu gibi” sunulur, herhangi bir garanti verilmez. Yazılımı kullanarak, doğabilecek her türlü sorumluluğu kabul edersiniz. Ticari amaçla kullanım için izin alınması gerekmez, ancak projenin açık kaynak lisansına (MIT) uyulmalıdır.</p>
+        <div class="cmd-group">
+            <h4>📝 Notlar</h4>
+            <ul class="cmd-list">
+                <li>Not al: toplantı var</li>
+                <li>Notlarımı göster</li>
+                <li>Notları temizle</li>
+            </ul>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="logo" style="font-size:2rem;">TUĞRA TECH AI</div>
-        <div class="footer-links">
-            <a href="#ozellikler">Özellikler</a>
-            <a href="#nasil-calisir">Nasıl Çalışır</a>
-            <a href="#kod">Geliştirici</a>
-            <a href="#sss">SSS</a>
-            <a href="#hakkimda">Hakkımda</a>
-            <a href="#">Gizlilik</a>
+        <div class="cmd-group">
+            <h4>⚙️ Sistem</h4>
+            <ul class="cmd-list">
+                <li>Hesap makinesi aç</li>
+                <li>Not defteri aç</li>
+                <li>Ses erkek yap</li>
+                <li>Hızlandır / Yavaşlat</li>
+            </ul>
         </div>
-        <p style="color:var(--text-dim);">© 2026 Tuğra Tech. Tüm hakları saklıdır? Hayır, her şey açık kaynak! </p>
-        <p style="color:var(--text-dim); font-size:0.85rem;">Bu site Google AdSense onay süreci için yeniden düzenlenmiştir. Reklamlar onay sonrası eklenecektir.</p>
-        <hr>
-        <p style="color:var(--text-dim);">Sorularınız mı var? tugra@tugratech.com</p>
-    </footer>
+    </div>
+</section>
 
-    <!-- İsteğe bağlı: script.js ile indirme fonksiyonu -->
-    <script>
-        function downloadJarvis() {
-            alert("Tuğra Asistan İndiriliyor...\n\nKurulum klasörü olarak 'C:\\Program Files\\TugraAsistan' seçilmesi önerilir.");
-            window.location.href = "https://drive.google.com/uc?export=download&id=1RjxO-CI47HFe7dOPYksmybCQXG8utpbZ";
-        }
-        // İndirme butonuna tıklanınca bu fonksiyon çalışacak (eğer butona doğrudan link vermek yerine fonksiyon kullanmak isterseniz)
-        // Şu an buton doğrudan linkli, ama alternatif olarak kullanılabilir.
-    </script>
+<!-- SSS -->
+<section id="sss">
+    <div class="section-title">
+        <h2>Sık Sorulan Sorular</h2>
+        <p>Merak ettiklerinin cevapları burada</p>
+    </div>
+    <div class="faq">
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Jarvis'i kullanmak için internet bağlantısı şart mı?</div>
+            <div class="faq-a">Saat, tarih ve not alma gibi temel özellikler internetsiz çalışır. Ancak ses tanıma, hava durumu ve Wikipedia araması için internet bağlantısı gereklidir.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Hangi Windows sürümlerinde çalışır?</div>
+            <div class="faq-a">Windows 10 ve Windows 11 üzerinde sorunsuz çalışır. Python 3.9 veya üstü gereklidir ancak kurulum paketi bunu otomatik halleder.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Konuşmalarım bir yere kaydediliyor mu?</div>
+            <div class="faq-a">Hayır. Jarvis tüm verileri sadece senin bilgisayarında saklar. Herhangi bir sunucuya ya da bulut sistemine veri gönderilmez.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Asistanın adını değiştirebilir miyim?</div>
+            <div class="faq-a">Evet! Ayarlar sekmesinden asistan adını, kullanıcı adını, ses cinsiyetini ve temayı istediğin gibi değiştirebilirsin.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Ücretsiz mi?</div>
+            <div class="faq-a">Evet, Jarvis tamamen ücretsizdir. Kaynak kodları açık olup kişisel kullanım için serbestçe kullanabilirsin.</div>
+        </div>
+    </div>
+</section>
+
+<!-- HAKKINDA -->
+<section id="hakkinda">
+    <div class="about-box">
+        <h2>Tuğra Tech Hakkında</h2>
+        <p>Tuğra Tech, Türkçe yazılım ve yapay zeka çözümleri geliştiren bağımsız bir teknoloji projesidir. Jarvis, kullanıcıların bilgisayarlarıyla daha doğal ve verimli etkileşim kurabilmesi için geliştirilmiştir.</p>
+        <p>Proje sürekli geliştirilmekte ve yeni özellikler eklenmektedir. Geri bildirimleriniz ve önerileriniz için iletişime geçebilirsiniz.</p>
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <span style="background: rgba(233,69,96,0.1); border: 1px solid rgba(233,69,96,0.3); color: #e94560; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">Python</span>
+            <span style="background: rgba(0,85,255,0.1); border: 1px solid rgba(0,85,255,0.3); color: #5588ff; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">Edge TTS</span>
+            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">CustomTkinter</span>
+            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">Wikipedia API</span>
+            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">Flask</span>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Tuğra Tech · Tüm hakları saklıdır</p>
+    <p style="margin-top: 6px;">Jarvis Yapay Zeka Asistan · Türkçe AI</p>
+</footer>
+
+<script>
+function toggleFaq(el) {
+    el.classList.toggle('open');
+    el.nextElementSibling.classList.toggle('open');
+}
+</script>
+
 </body>
 </html>
