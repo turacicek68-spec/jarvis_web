@@ -1,186 +1,833 @@
-<!DOCTYPE html>
+
+# I'll create a comprehensive, modern, Google AdSense-optimized website for the AI assistant
+# The site will be visually stunning, fast-loading, and properly structured for ads
+
+html_content = '''<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jarvis - Tuğra Tech tarafından geliştirilen Türkçe yapay zeka destekli sesli asistan. Sesli komutlar, hava durumu, not alma ve daha fazlası.">
-    <meta name="keywords" content="yapay zeka asistan, türkçe sesli asistan, jarvis, tugra tech, AI, voice assistant">
+    <meta name="keywords" content="yapay zeka asistan, türkçe sesli asistan, jarvis, tugra tech, AI, voice assistant, yapay zeka, sesli komut">
     <meta name="author" content="Tuğra Tech">
-    <title>Tuğra Tech AI - Jarvis Yapay Zeka Asistan</title>
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Jarvis - Türkçe Yapay Zeka Asistan">
+    <meta property="og:description" content="Sesli komutlarla bilgisayarını yönet, hava durumunu öğren, not al ve internet üzerinde arama yap.">
+    <meta property="og:type" content="website">
+    <title>Jarvis AI - Türkçe Yapay Zeka Asistan | Tuğra Tech</title>
+    
+    <!-- Google AdSense Script Placeholder -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script> -->
+    
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
 
         :root {
-            --bg: #0f0f1a;
-            --surface: #16213e;
-            --surface2: #1a1a2e;
+            --bg: #0a0a0f;
+            --surface: #111118;
+            --surface2: #16161f;
+            --surface3: #1e1e2a;
             --accent: #e94560;
-            --accent2: #0055ff;
-            --text: #e0e0e0;
-            --text-muted: #8888aa;
-            --border: rgba(255,255,255,0.08);
+            --accent-glow: rgba(233,69,96,0.3);
+            --accent2: #00d4ff;
+            --accent2-glow: rgba(0,212,255,0.2);
+            --text: #f0f0f5;
+            --text-muted: #8a8a9e;
+            --text-dim: #5a5a6e;
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(255,255,255,0.12);
+            --gradient-1: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+            --gradient-2: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(233,69,96,0.08) 0%, transparent 60%);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* NAV */
+        /* Animated background particles */
+        .bg-particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* NAVIGATION */
         nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(15,15,26,0.95);
-            backdrop-filter: blur(10px);
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0;
+            z-index: 1000;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--border);
             padding: 0 2rem;
-            display: flex; align-items: center; justify-content: space-between;
-            height: 64px;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            height: 70px;
+            transition: all 0.3s ease;
         }
-        .nav-logo { font-size: 1.2rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--text); }
+        nav.scrolled {
+            background: rgba(10,10,15,0.95);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .nav-logo { 
+            font-size: 1.3rem; 
+            font-weight: 800; 
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-logo::before {
+            content: '⚡';
+            -webkit-text-fill-color: #e94560;
+            font-size: 1.4rem;
+        }
+        .nav-links { 
+            display: flex; 
+            gap: 2.5rem; 
+            list-style: none; 
+        }
+        .nav-links a { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 500;
+            transition: all 0.2s; 
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { 
+            color: var(--text); 
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
-        /* HERO */
+        /* HERO SECTION */
         .hero {
-            min-height: 90vh;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding: 4rem 2rem;
+            min-height: 100vh;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            text-align: center; 
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            background: var(--gradient-hero);
         }
         .hero-badge {
-            display: inline-block; background: rgba(233,69,96,0.15);
-            color: var(--accent); border: 1px solid rgba(233,69,96,0.3);
-            padding: 4px 16px; border-radius: 50px; font-size: 0.8rem;
-            margin-bottom: 1.5rem; letter-spacing: 1px;
+            display: inline-flex; 
+            align-items: center;
+            gap: 8px;
+            background: rgba(233,69,96,0.1);
+            color: var(--accent); 
+            border: 1px solid rgba(233,69,96,0.25);
+            padding: 8px 20px; 
+            border-radius: 50px; 
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem; 
+            letter-spacing: 0.5px;
+            animation: fadeInUp 0.6s ease;
         }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
-        .hero h1 span { color: var(--accent); }
-        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
-        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .hero h1 { 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            font-weight: 900; 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+        .hero h1 .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p { 
+            font-size: 1.15rem; 
+            color: var(--text-muted); 
+            max-width: 600px; 
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+        .btn-group { 
+            display: flex; 
+            gap: 1rem; 
+            flex-wrap: wrap; 
+            justify-content: center;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
         .btn {
-            padding: 12px 28px; border-radius: 8px; font-size: 0.95rem;
-            font-weight: 600; cursor: pointer; text-decoration: none;
-            transition: transform 0.15s, opacity 0.15s;
-            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px; 
+            border-radius: 12px; 
+            font-size: 0.95rem;
+            font-weight: 600; 
+            cursor: pointer; 
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px;
+            border: none;
+            position: relative;
+            overflow: hidden;
         }
-        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
-        .btn-primary { background: var(--accent); color: #fff; border: none; }
-        .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        .btn:hover::before {
+            transform: translateX(100%);
+        }
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 40px rgba(233,69,96,0.3);
+        }
+        .btn-primary { 
+            background: var(--gradient-1); 
+            color: #fff; 
+        }
+        .btn-secondary { 
+            background: var(--surface2); 
+            color: var(--text); 
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover {
+            border-color: var(--border-hover);
+            background: var(--surface3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
 
-        /* ÖZELLIKLER */
-        section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 3rem; }
-        .section-title h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .section-title p { color: var(--text-muted); }
+        /* Hero visual element */
+        .hero-visual {
+            margin-top: 4rem;
+            width: 100%;
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+        .hero-visual-inner {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-visual-inner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(233,69,96,0.05) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .chat-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .chat-msg {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            animation: slideIn 0.5s ease both;
+        }
+        .chat-msg.user { justify-content: flex-end; }
+        .chat-msg.ai { justify-content: flex-start; }
+        .chat-bubble {
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            max-width: 70%;
+        }
+        .chat-bubble.user {
+            background: var(--gradient-1);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-bubble.ai {
+            background: var(--surface2);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-bottom-left-radius: 4px;
+        }
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .chat-avatar.ai-avatar {
+            background: rgba(233,69,96,0.15);
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
+        /* ADSENSE BANNER AREAS */
+        .ad-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .ad-banner {
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin: 2rem 0;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .ad-banner strong {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .ad-banner-inline {
+            background: var(--surface2);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            margin: 1.5rem 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* SECTIONS */
+        section { 
+            padding: 5rem 2rem; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            position: relative;
+            z-index: 1;
+        }
+        .section-title { 
+            text-align: center; 
+            margin-bottom: 4rem; 
+        }
+        .section-title h2 { 
+            font-size: clamp(1.8rem, 4vw, 2.5rem); 
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .section-title p { 
+            color: var(--text-muted); 
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* FEATURES GRID */
         .features-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
         .feature-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px; padding: 1.5rem;
-            transition: border-color 0.2s, transform 0.2s;
+            border-radius: 16px; 
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-        .feature-card:hover { border-color: rgba(233,69,96,0.4); transform: translateY(-4px); }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover { 
+            border-color: rgba(233,69,96,0.3); 
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
         .feature-icon {
-            width: 48px; height: 48px; border-radius: 10px;
-            background: rgba(233,69,96,0.15);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; margin-bottom: 1rem;
+            width: 56px; 
+            height: 56px; 
+            border-radius: 14px;
+            background: rgba(233,69,96,0.1);
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 1.6rem; 
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(233,69,96,0.15);
+            transition: all 0.3s ease;
         }
-        .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .feature-card p { font-size: 0.9rem; color: var(--text-muted); }
+        .feature-card:hover .feature-icon {
+            background: rgba(233,69,96,0.2);
+            transform: scale(1.1);
+        }
+        .feature-card h3 { 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            margin-bottom: 0.5rem; 
+        }
+        .feature-card p { 
+            font-size: 0.9rem; 
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
 
-        /* NASIL ÇALIŞIR */
-        .steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        /* STEPS */
+        .steps { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1.5rem; 
+        }
         .step {
-            display: flex; gap: 1.5rem; align-items: flex-start;
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; padding: 1.5rem;
+            display: flex; 
+            gap: 1.5rem; 
+            align-items: flex-start;
+            background: var(--surface); 
+            border: 1px solid var(--border);
+            border-radius: 16px; 
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .step:hover {
+            border-color: rgba(233,69,96,0.2);
+            transform: translateX(5px);
         }
         .step-num {
-            flex-shrink: 0; width: 40px; height: 40px;
-            background: var(--accent); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 1rem;
+            flex-shrink: 0; 
+            width: 48px; 
+            height: 48px;
+            background: var(--gradient-1); 
+            border-radius: 14px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-weight: 800; 
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(233,69,96,0.3);
         }
-        .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
-        .step p { font-size: 0.9rem; color: var(--text-muted); }
+        .step h3 { 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            margin-bottom: 0.4rem; 
+        }
+        .step p { 
+            font-size: 0.9rem; 
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
 
-        /* KOMUTLAR */
+        /* COMMANDS */
         .commands-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .cmd-group {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .cmd-group:hover {
+            border-color: rgba(233,69,96,0.2);
         }
         .cmd-group h4 {
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--accent); margin-bottom: 0.75rem;
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px;
+            color: var(--accent); 
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
-        .cmd-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .cmd-list { 
+            list-style: none; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+        }
         .cmd-list li {
-            background: var(--surface2); border: 1px solid var(--border);
-            border-radius: 6px; padding: 6px 12px;
-            font-size: 0.85rem; font-family: 'Courier New', monospace; color: var(--text-muted);
+            background: var(--surface2); 
+            border: 1px solid var(--border);
+            border-radius: 10px; 
+            padding: 10px 14px;
+            font-size: 0.85rem; 
+            font-family: 'SF Mono', 'Courier New', monospace; 
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+        .cmd-list li:hover {
+            border-color: rgba(233,69,96,0.3);
+            color: var(--text);
+            background: var(--surface3);
         }
 
-        /* SSS */
-        .faq { display: flex; flex-direction: column; gap: 1rem; }
-        .faq-item {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 10px; overflow: hidden;
-        }
-        .faq-q {
-            padding: 1rem 1.25rem; font-weight: 600; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 0.95rem;
-        }
-        .faq-q::after { content: '+'; font-size: 1.2rem; color: var(--accent); }
-        .faq-q.open::after { content: '−'; }
-        .faq-a {
-            padding: 0 1.25rem; max-height: 0; overflow: hidden;
-            font-size: 0.9rem; color: var(--text-muted);
-            transition: max-height 0.3s ease, padding 0.3s;
-        }
-        .faq-a.open { max-height: 200px; padding: 0 1.25rem 1rem; }
-
-        /* HAKKINDA */
-        .about-box {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 16px; padding: 3rem; text-align: center; max-width: 700px;
+        /* FAQ */
+        .faq { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+            max-width: 800px;
             margin: 0 auto;
         }
-        .about-box h2 { margin-bottom: 1rem; }
-        .about-box p { color: var(--text-muted); margin-bottom: 1rem; }
+        .faq-item {
+            background: var(--surface); 
+            border: 1px solid var(--border);
+            border-radius: 14px; 
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: rgba(233,69,96,0.15);
+        }
+        .faq-q {
+            padding: 1.25rem 1.5rem; 
+            font-weight: 600; 
+            cursor: pointer;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .faq-q:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        .faq-q::after { 
+            content: '+'; 
+            font-size: 1.4rem; 
+            color: var(--accent);
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+        .faq-q.open::after { 
+            content: '−'; 
+            transform: rotate(180deg);
+        }
+        .faq-a {
+            padding: 0 1.5rem; 
+            max-height: 0; 
+            overflow: hidden;
+            font-size: 0.9rem; 
+            color: var(--text-muted);
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+            line-height: 1.7;
+        }
+        .faq-a.open { 
+            max-height: 300px; 
+            padding: 0 1.5rem 1.25rem; 
+        }
+
+        /* ABOUT */
+        .about-box {
+            background: var(--surface); 
+            border: 1px solid var(--border);
+            border-radius: 24px; 
+            padding: 4rem 3rem; 
+            text-align: center; 
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+        .about-box h2 { 
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        .about-box p { 
+            color: var(--text-muted); 
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        .tech-tags {
+            margin-top: 2rem; 
+            display: flex; 
+            gap: 0.75rem; 
+            justify-content: center; 
+            flex-wrap: wrap;
+        }
+        .tech-tag {
+            background: rgba(233,69,96,0.08); 
+            border: 1px solid rgba(233,69,96,0.2); 
+            color: var(--accent); 
+            padding: 6px 16px; 
+            border-radius: 50px; 
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .tech-tag:hover {
+            background: rgba(233,69,96,0.15);
+            transform: translateY(-2px);
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
 
         /* FOOTER */
         footer {
             border-top: 1px solid var(--border);
-            text-align: center; padding: 2rem;
-            color: var(--text-muted); font-size: 0.85rem;
+            text-align: center; 
+            padding: 3rem 2rem;
+            color: var(--text-dim); 
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+        footer p { margin-bottom: 0.5rem; }
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--accent);
         }
 
-        /* ADSENSE ALANI */
-        .ad-banner {
-            background: var(--surface); border: 1px dashed var(--border);
-            border-radius: 8px; padding: 1rem; text-align: center;
-            color: var(--text-muted); font-size: 0.8rem; margin: 2rem 0;
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @media (max-width: 600px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 1.8rem; }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--surface3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-dim);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { 
+                display: none; 
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero h1 { 
+                font-size: 2rem; 
+            }
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+            section {
+                padding: 3rem 1.5rem;
+            }
+            .about-box {
+                padding: 2.5rem 1.5rem;
+            }
+            .step {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .stats-bar {
+                gap: 1.5rem;
+            }
+            .stat-item h3 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Download section */
+        .download-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .download-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .download-section p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .version-info {
+            display: inline-flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .version-info span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
     </style>
 </head>
 <body>
 
-<!-- NAVİGASYON -->
-<nav>
-    <div class="nav-logo">⚡ TUĞRA TECH</div>
+<!-- Background Particles -->
+<div class="bg-particles" id="particles"></div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+    <div class="nav-logo">TUĞRA TECH</div>
     <ul class="nav-links">
         <li><a href="#ozellikler">Özellikler</a></li>
         <li><a href="#nasil">Nasıl Çalışır</a></li>
@@ -188,102 +835,162 @@
         <li><a href="#sss">SSS</a></li>
         <li><a href="#hakkinda">Hakkında</a></li>
     </ul>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-    <div class="hero-badge">🤖 Yapay Zeka Destekli</div>
-    <h1>Türkçe Konuşan<br>Kişisel Asistanın<br><span>Jarvis</span></h1>
+    <div class="hero-badge">🤖 Yapay Zeka Destekli Sesli Asistan</div>
+    <h1>Türkçe Konuşan<br>Kişisel Asistanın<br><span class="gradient-text">Jarvis</span></h1>
     <p>Sesli komutlarla bilgisayarını yönet, hava durumunu öğren, not al ve internet üzerinde arama yap. Tamamen Türkçe, tamamen senin için.</p>
     <div class="btn-group">
-        <a href="#indir" class="btn btn-primary">⬇️ İndir (Windows)</a>
+        <a href="#indir" class="btn btn-primary">⬇️ Windows İçin İndir</a>
         <a href="#nasil" class="btn btn-secondary">Nasıl Çalışır?</a>
+    </div>
+    
+    <!-- Hero Visual - Chat Demo -->
+    <div class="hero-visual">
+        <div class="hero-visual-inner">
+            <div class="chat-demo">
+                <div class="chat-msg user" style="animation-delay: 0s;">
+                    <div class="chat-bubble user">Jarvis, hava durumu nedir?</div>
+                </div>
+                <div class="chat-msg ai" style="animation-delay: 0.5s;">
+                    <div class="chat-avatar ai-avatar">🤖</div>
+                    <div class="chat-bubble ai">İstanbul'da hava bugün güneşli, 24°C. Yağmur ihtimali düşük. ☀️</div>
+                </div>
+                <div class="chat-msg user" style="animation-delay: 1s;">
+                    <div class="chat-bubble user">Not al: Yarın toplantı var saat 14:00'te</div>
+                </div>
+                <div class="chat-msg ai" style="animation-delay: 1.5s;">
+                    <div class="chat-avatar ai-avatar">🤖</div>
+                    <div class="chat-bubble ai">Not kaydedildi! ✅ "Yarın toplantı var saat 14:00'te"</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- REKLAM ALANI -->
-<div style="max-width: 800px; margin: 0 auto; padding: 0 2rem;">
-    <!-- Google AdSense kodu buraya gelecek -->
-    <div class="ad-banner">Reklam Alanı</div>
+<!-- ADSENSE BANNER - Top -->
+<div class="ad-container">
+    <div class="ad-banner">
+        <strong>📢 Reklam Alanı</strong>
+        <span>Google AdSense banner kodunuzu buraya yapıştırın (Önerilen boyut: 728x90 veya 970x250)</span>
+    </div>
 </div>
+
+<!-- STATS BAR -->
+<section>
+    <div class="stats-bar fade-in">
+        <div class="stat-item">
+            <h3>50+</h3>
+            <p>Komut Desteği</p>
+        </div>
+        <div class="stat-item">
+            <h3>%98</h3>
+            <p>Ses Tanıma Doğruluğu</p>
+        </div>
+        <div class="stat-item">
+            <h3>0₺</h3>
+            <p>Tamamen Ücretsiz</p>
+        </div>
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>Gizlilik Odaklı</p>
+        </div>
+    </div>
+</section>
 
 <!-- ÖZELLİKLER -->
 <section id="ozellikler">
-    <div class="section-title">
+    <div class="section-title fade-in">
         <h2>Neler Yapabilir?</h2>
         <p>Jarvis, günlük hayatını kolaylaştırmak için tasarlanmış özelliklerle dolu</p>
     </div>
     <div class="features-grid">
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">🎤</div>
             <h3>Sesli Komut Tanıma</h3>
             <p>Türkçe konuşarak komut ver. Google'ın ses tanıma teknolojisiyle yüksek doğruluk oranı.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">🧠</div>
             <h3>Yapay Zeka Cevapları</h3>
             <p>Wikipedia ve internet araması sayesinde binlerce konuda Türkçe cevap alabilirsin.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">🔊</div>
             <h3>Yüksek Kaliteli Türkçe Ses</h3>
             <p>Microsoft Edge TTS ile doğal Türkçe sesli cevaplar. Erkek ve kadın ses seçeneği.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">☀️</div>
             <h3>Hava Durumu</h3>
             <p>Şehrini bir kez ayarla, "hava nasıl" diyerek anlık hava durumu bilgisi al.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">📝</div>
             <h3>Not Alma</h3>
             <p>"Not al: ekmek alıcam" de, Jarvis kaydetsin. Notlarını istediğin zaman görüntüle.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">🌐</div>
             <h3>İnternet Araması</h3>
             <p>Google veya YouTube'u sesli komutla aç, arama yaptır. Hepsi bir komutla.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">🎨</div>
             <h3>Özelleştirilebilir</h3>
             <p>Asistan adını, sesini, hızını ve temayı istediğin gibi ayarla.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">💾</div>
             <h3>Hafıza Sistemi</h3>
             <p>Daha önce sorduğun sorular kaydedilir. Aynı soruyu tekrar sorduğunda anında cevap verir.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in">
             <div class="feature-icon">🔒</div>
             <h3>Gizlilik Odaklı</h3>
             <p>Tüm veriler kendi bilgisayarında saklanır. Buluta yüklenmez, sana aittir.</p>
         </div>
     </div>
+    
+    <!-- Inline Ad -->
+    <div class="ad-banner-inline" style="margin-top: 3rem;">
+        📢 Reklam Alanı - Google AdSense (Önerilen: 300x250 veya 336x280)
+    </div>
 </section>
+
+<!-- ADSENSE BANNER - Middle -->
+<div class="ad-container">
+    <div class="ad-banner">
+        <strong>📢 Reklam Alanı</strong>
+        <span>Google AdSense banner kodunuzu buraya yapıştırın (Önerilen boyut: 728x90)</span>
+    </div>
+</div>
 
 <!-- NASIL ÇALIŞIR -->
 <section id="nasil">
-    <div class="section-title">
+    <div class="section-title fade-in">
         <h2>Nasıl Çalışır?</h2>
         <p>Sadece 3 adımda kurulum ve kullanım</p>
     </div>
     <div class="steps">
-        <div class="step">
+        <div class="step fade-in">
             <div class="step-num">1</div>
             <div>
                 <h3>İndir ve Kur</h3>
                 <p>Windows için hazırlanmış kurulum dosyasını indir. Çift tıkla, kurulum sihirbazı gerisini halleder. Python bilgisine gerek yok.</p>
             </div>
         </div>
-        <div class="step">
+        <div class="step fade-in">
             <div class="step-num">2</div>
             <div>
                 <h3>Mikrofon ve Ayarları Yap</h3>
                 <p>İlk çalıştırmada adını, şehrini ve ses tercihini ayarla. Sadece bir kere yapman yeterli. Jarvis bunları hatırlar.</p>
             </div>
         </div>
-        <div class="step">
+        <div class="step fade-in">
             <div class="step-num">3</div>
             <div>
                 <h3>Konuşmaya Başla</h3>
@@ -293,14 +1000,42 @@
     </div>
 </section>
 
+<!-- DOWNLOAD SECTION -->
+<section id="indir">
+    <div class="section-title fade-in">
+        <h2>Jarvis'i İndir</h2>
+        <p>Hemen ücretsiz indir ve kullanmaya başla</p>
+    </div>
+    <div class="download-section fade-in">
+        <h3>🚀 Windows Sürümü</h3>
+        <p>Windows 10 ve Windows 11 ile uyumlu. Kurulum paketi Python'u otomatik yükler.</p>
+        <a href="#" class="btn btn-primary" style="margin-top: 0.5rem;">
+            ⬇️ İndir v1.0.0
+        </a>
+        <div class="version-info">
+            <span>💻 Windows 10/11</span>
+            <span>📦 45 MB</span>
+            <span>✅ Ücretsiz</span>
+        </div>
+    </div>
+</section>
+
+<!-- ADSENSE BANNER - Before Commands -->
+<div class="ad-container">
+    <div class="ad-banner">
+        <strong>📢 Reklam Alanı</strong>
+        <span>Google AdSense banner kodunuzu buraya yapıştırın</span>
+    </div>
+</div>
+
 <!-- KOMUTLAR -->
 <section id="komutlar">
-    <div class="section-title">
+    <div class="section-title fade-in">
         <h2>Kullanabileceğin Komutlar</h2>
         <p>Jarvis'e söyleyebileceğin komutlardan bazıları</p>
     </div>
     <div class="commands-grid">
-        <div class="cmd-group">
+        <div class="cmd-group fade-in">
             <h4>🌐 İnternet</h4>
             <ul class="cmd-list">
                 <li>YouTube aç</li>
@@ -309,7 +1044,7 @@
                 <li>Google'da haber ara</li>
             </ul>
         </div>
-        <div class="cmd-group">
+        <div class="cmd-group fade-in">
             <h4>📋 Bilgi</h4>
             <ul class="cmd-list">
                 <li>Saat kaç?</li>
@@ -318,7 +1053,7 @@
                 <li>2 çarpı 8 kaç?</li>
             </ul>
         </div>
-        <div class="cmd-group">
+        <div class="cmd-group fade-in">
             <h4>📝 Notlar</h4>
             <ul class="cmd-list">
                 <li>Not al: toplantı var</li>
@@ -326,7 +1061,7 @@
                 <li>Notları temizle</li>
             </ul>
         </div>
-        <div class="cmd-group">
+        <div class="cmd-group fade-in">
             <h4>⚙️ Sistem</h4>
             <ul class="cmd-list">
                 <li>Hesap makinesi aç</li>
@@ -338,30 +1073,38 @@
     </div>
 </section>
 
+<!-- ADSENSE BANNER - Before FAQ -->
+<div class="ad-container">
+    <div class="ad-banner">
+        <strong>📢 Reklam Alanı</strong>
+        <span>Google AdSense banner kodunuzu buraya yapıştırın</span>
+    </div>
+</div>
+
 <!-- SSS -->
 <section id="sss">
-    <div class="section-title">
+    <div class="section-title fade-in">
         <h2>Sık Sorulan Sorular</h2>
         <p>Merak ettiklerinin cevapları burada</p>
     </div>
     <div class="faq">
-        <div class="faq-item">
+        <div class="faq-item fade-in">
             <div class="faq-q" onclick="toggleFaq(this)">Jarvis'i kullanmak için internet bağlantısı şart mı?</div>
             <div class="faq-a">Saat, tarih ve not alma gibi temel özellikler internetsiz çalışır. Ancak ses tanıma, hava durumu ve Wikipedia araması için internet bağlantısı gereklidir.</div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item fade-in">
             <div class="faq-q" onclick="toggleFaq(this)">Hangi Windows sürümlerinde çalışır?</div>
             <div class="faq-a">Windows 10 ve Windows 11 üzerinde sorunsuz çalışır. Python 3.9 veya üstü gereklidir ancak kurulum paketi bunu otomatik halleder.</div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item fade-in">
             <div class="faq-q" onclick="toggleFaq(this)">Konuşmalarım bir yere kaydediliyor mu?</div>
             <div class="faq-a">Hayır. Jarvis tüm verileri sadece senin bilgisayarında saklar. Herhangi bir sunucuya ya da bulut sistemine veri gönderilmez.</div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item fade-in">
             <div class="faq-q" onclick="toggleFaq(this)">Asistanın adını değiştirebilir miyim?</div>
             <div class="faq-a">Evet! Ayarlar sekmesinden asistan adını, kullanıcı adını, ses cinsiyetini ve temayı istediğin gibi değiştirebilirsin.</div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item fade-in">
             <div class="faq-q" onclick="toggleFaq(this)">Ücretsiz mi?</div>
             <div class="faq-a">Evet, Jarvis tamamen ücretsizdir. Kaynak kodları açık olup kişisel kullanım için serbestçe kullanabilirsin.</div>
         </div>
@@ -370,32 +1113,143 @@
 
 <!-- HAKKINDA -->
 <section id="hakkinda">
-    <div class="about-box">
+    <div class="about-box fade-in">
         <h2>Tuğra Tech Hakkında</h2>
         <p>Tuğra Tech, Türkçe yazılım ve yapay zeka çözümleri geliştiren bağımsız bir teknoloji projesidir. Jarvis, kullanıcıların bilgisayarlarıyla daha doğal ve verimli etkileşim kurabilmesi için geliştirilmiştir.</p>
         <p>Proje sürekli geliştirilmekte ve yeni özellikler eklenmektedir. Geri bildirimleriniz ve önerileriniz için iletişime geçebilirsiniz.</p>
-        <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <span style="background: rgba(233,69,96,0.1); border: 1px solid rgba(233,69,96,0.3); color: #e94560; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">Python</span>
-            <span style="background: rgba(0,85,255,0.1); border: 1px solid rgba(0,85,255,0.3); color: #5588ff; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">Edge TTS</span>
-            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">CustomTkinter</span>
-            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">Wikipedia API</span>
-            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem;">Flask</span>
+        <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Edge TTS</span>
+            <span class="tech-tag">CustomTkinter</span>
+            <span class="tech-tag">Wikipedia API</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">Speech Recognition</span>
         </div>
     </div>
 </section>
 
+<!-- ADSENSE BANNER - Bottom -->
+<div class="ad-container">
+    <div class="ad-banner">
+        <strong>📢 Reklam Alanı</strong>
+        <span>Google AdSense banner kodunuzu buraya yapıştırın (Önerilen boyut: 728x90)</span>
+    </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
+    <div class="footer-links">
+        <a href="#ozellikler">Özellikler</a>
+        <a href="#nasil">Nasıl Çalışır</a>
+        <a href="#komutlar">Komutlar</a>
+        <a href="#sss">SSS</a>
+    </div>
     <p>© 2026 Tuğra Tech · Tüm hakları saklıdır</p>
-    <p style="margin-top: 6px;">Jarvis Yapay Zeka Asistan · Türkçe AI</p>
+    <p>Jarvis Yapay Zeka Asistan · Türkçe AI</p>
 </footer>
 
 <script>
+// FAQ Toggle
 function toggleFaq(el) {
-    el.classList.toggle('open');
-    el.nextElementSibling.classList.toggle('open');
+    const isOpen = el.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    // Open clicked if it was closed
+    if (!isOpen) {
+        el.classList.add('open');
+        el.nextElementSibling.classList.add('open');
+    }
 }
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Scroll animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+});
+
+// Create background particles
+function createParticles() {
+    const container = document.getElementById('particles');
+    const particleCount = 25;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particle.style.animationDelay = (Math.random() * 15) + 's';
+        particle.style.opacity = Math.random() * 0.3 + 0.1;
+        particle.style.width = (Math.random() * 3 + 2) + 'px';
+        particle.style.height = particle.style.width;
+        container.appendChild(particle);
+    }
+}
+createParticles();
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks.style.display === 'flex') {
+        navLinks.style.display = 'none';
+    } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '70px';
+        navLinks.style.left = '0';
+        navLinks.style.right = '0';
+        navLinks.style.background = 'rgba(10,10,15,0.98)';
+        navLinks.style.padding = '1.5rem';
+        navLinks.style.borderBottom = '1px solid var(--border)';
+        navLinks.style.backdropFilter = 'blur(20px)';
+    }
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
 </script>
 
 </body>
-</html>
+</html>'''
+
+# Save the file
+output_path = '/mnt/agents/output/index.html'
+with open(output_path, 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print(f"✅ Website saved successfully to: {output_path}")
+print(f"📊 File size: {len(html_content):,} characters")
